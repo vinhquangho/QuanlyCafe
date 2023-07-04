@@ -89,6 +89,9 @@
     <EmbeddedResource Include="fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fMain.resx">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307041303506_init-data.resx">
       <DependentUpon>202307041303506_init-data.cs</DependentUpon>
     </EmbeddedResource>

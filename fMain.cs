@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanlyCafe.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace QuanlyCafe
 {
     public partial class fMain : Form
     {
+        private AppDbContext _dbContext = new AppDbContext();
         public fMain()
         {
             InitializeComponent();
