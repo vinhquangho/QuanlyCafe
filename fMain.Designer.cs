@@ -241,6 +241,7 @@
             this.dgvAccount.Name = "dgvAccount";
             this.dgvAccount.Size = new System.Drawing.Size(761, 316);
             this.dgvAccount.TabIndex = 2;
+            this.dgvAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAccount_CellFormatting);
             // 
             // btnCreateArea
             // 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,9 @@ namespace QuanlyCafe.EntityFramework
     }
     public enum Status
     {
+        [Display(Name = "Đang hoạt động")]
         Active = 1,
+        [Display(Name = "Ngừng hoạt động")]
         DeActive = 2,
     }
 }
