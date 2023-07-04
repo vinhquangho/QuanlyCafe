@@ -250,6 +250,7 @@
             this.btnCreateArea.TabIndex = 2;
             this.btnCreateArea.Text = "Thêm";
             this.btnCreateArea.UseVisualStyleBackColor = true;
+            this.btnCreateArea.Click += new System.EventHandler(this.btnCreateArea_Click);
             // 
             // btnUpdateArea
             // 
@@ -259,6 +260,7 @@
             this.btnUpdateArea.TabIndex = 3;
             this.btnUpdateArea.Text = "Sửa";
             this.btnUpdateArea.UseVisualStyleBackColor = true;
+            this.btnUpdateArea.Click += new System.EventHandler(this.btnUpdateArea_Click);
             // 
             // btnUpdateTable
             // 
@@ -268,6 +270,7 @@
             this.btnUpdateTable.TabIndex = 6;
             this.btnUpdateTable.Text = "Sửa";
             this.btnUpdateTable.UseVisualStyleBackColor = true;
+            this.btnUpdateTable.Click += new System.EventHandler(this.btnUpdateTable_Click);
             // 
             // btnCreateTable
             // 
@@ -277,6 +280,7 @@
             this.btnCreateTable.TabIndex = 5;
             this.btnCreateTable.Text = "Thêm";
             this.btnCreateTable.UseVisualStyleBackColor = true;
+            this.btnCreateTable.Click += new System.EventHandler(this.btnCreateTable_Click);
             // 
             // btnUpdateCategory
             // 
@@ -286,6 +290,7 @@
             this.btnUpdateCategory.TabIndex = 6;
             this.btnUpdateCategory.Text = "Sửa";
             this.btnUpdateCategory.UseVisualStyleBackColor = true;
+            this.btnUpdateCategory.Click += new System.EventHandler(this.btnUpdateCategory_Click);
             // 
             // btnCreateCategory
             // 
@@ -295,6 +300,7 @@
             this.btnCreateCategory.TabIndex = 5;
             this.btnCreateCategory.Text = "Thêm";
             this.btnCreateCategory.UseVisualStyleBackColor = true;
+            this.btnCreateCategory.Click += new System.EventHandler(this.btnCreateCategory_Click);
             // 
             // btnUpdateFood
             // 
@@ -304,6 +310,7 @@
             this.btnUpdateFood.TabIndex = 6;
             this.btnUpdateFood.Text = "Sửa";
             this.btnUpdateFood.UseVisualStyleBackColor = true;
+            this.btnUpdateFood.Click += new System.EventHandler(this.btnUpdateFood_Click);
             // 
             // btnCreateFood
             // 
@@ -313,6 +320,7 @@
             this.btnCreateFood.TabIndex = 5;
             this.btnCreateFood.Text = "Thêm";
             this.btnCreateFood.UseVisualStyleBackColor = true;
+            this.btnCreateFood.Click += new System.EventHandler(this.btnCreateFood_Click);
             // 
             // btnUpdateAccount
             // 
@@ -322,6 +330,7 @@
             this.btnUpdateAccount.TabIndex = 6;
             this.btnUpdateAccount.Text = "Sửa";
             this.btnUpdateAccount.UseVisualStyleBackColor = true;
+            this.btnUpdateAccount.Click += new System.EventHandler(this.btnUpdateAccount_Click);
             // 
             // btnCreateAccount
             // 
@@ -331,6 +340,7 @@
             this.btnCreateAccount.TabIndex = 5;
             this.btnCreateAccount.Text = "Thêm";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
+            this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
             // 
             // txtAreaName
             // 
