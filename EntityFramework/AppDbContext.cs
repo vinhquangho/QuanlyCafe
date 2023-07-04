@@ -20,5 +20,6 @@ namespace QuanlyCafe.EntityFramework
         public DbSet<Category> Categories { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Table> Tables { get; set; }
+        public DbSet<AreaTable> AreaTables { get; set; }
     }
 }

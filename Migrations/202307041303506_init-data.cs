@@ -21,6 +21,15 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.AreaTable",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.BillInfo",
                 c => new
                     {
@@ -105,6 +114,7 @@
             DropTable("dbo.Table");
             DropTable("dbo.Bill");
             DropTable("dbo.BillInfo");
+            DropTable("dbo.AreaTable");
             DropTable("dbo.Account");
         }
     }

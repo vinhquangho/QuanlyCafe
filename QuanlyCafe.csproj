@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="EntityFramework\Account.cs" />
     <Compile Include="EntityFramework\AppDbContext.cs" />
+    <Compile Include="EntityFramework\AreaTable.cs" />
     <Compile Include="EntityFramework\Bill.cs" />
     <Compile Include="EntityFramework\BillInfo.cs" />
     <Compile Include="EntityFramework\Category.cs" />
@@ -74,9 +75,13 @@
     <Compile Include="fMain.Designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202307030156581_init-data.cs" />
-    <Compile Include="Migrations\202307030156581_init-data.designer.cs">
-      <DependentUpon>202307030156581_init-data.cs</DependentUpon>
+    <Compile Include="Migrations\202307041303506_init-data.cs" />
+    <Compile Include="Migrations\202307041303506_init-data.designer.cs">
+      <DependentUpon>202307041303506_init-data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307041306208_init-data-1.cs" />
+    <Compile Include="Migrations\202307041306208_init-data-1.designer.cs">
+      <DependentUpon>202307041306208_init-data-1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -84,8 +89,11 @@
     <EmbeddedResource Include="fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307030156581_init-data.resx">
-      <DependentUpon>202307030156581_init-data.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202307041303506_init-data.resx">
+      <DependentUpon>202307041303506_init-data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307041306208_init-data-1.resx">
+      <DependentUpon>202307041306208_init-data-1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
