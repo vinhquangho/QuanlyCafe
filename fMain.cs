@@ -54,7 +54,8 @@ namespace QuanlyCafe
         }
         public void LoadArea()
         {
-
+            var list = _dbContext.AreaTables.ToList();
+            dgvArea.DataSource = list;
         }
         public void LoadTable()
         {
@@ -81,17 +82,7 @@ namespace QuanlyCafe
 
         }
 
-        private void btnUpdateArea_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCreateTable_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnUpdateTable_Click(object sender, EventArgs e)
         {
 
         }
@@ -101,27 +92,12 @@ namespace QuanlyCafe
 
         }
 
-        private void btnUpdateCategory_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCreateFood_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnUpdateFood_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCreateAccount_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnUpdateAccount_Click(object sender, EventArgs e)
         {
 
         }

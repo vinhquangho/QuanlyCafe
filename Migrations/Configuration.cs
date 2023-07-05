@@ -23,6 +23,43 @@
                 DislayName = "admin",
                 Status = EntityFramework.Status.Active
             });
+
+            context.AreaTables.AddOrUpdate(x => x.Id, new EntityFramework.AreaTable()
+            {
+                Id = 1,
+                Name = "Khu A",
+                CreationTime = DateTime.Now,
+                Status = EntityFramework.Status.Active,
+                Tables = new System.Collections.Generic.List<EntityFramework.Table>()
+                {
+                    new EntityFramework.Table()
+                    {
+                        Id = 1,
+                        Name = "Bàn số 1",
+                        CreationTime =DateTime.Now,
+                        Status = EntityFramework.Status.Active,
+                    }
+                }
+            });
+
+            context.Categories.AddOrUpdate(x => x.Id, new EntityFramework.Category()
+            {
+                Id = 1,
+                Name = "Nước ngọt",
+                CreationTime = DateTime.Now,
+                Status = EntityFramework.Status.Active,
+                Foods = new System.Collections.Generic.List<EntityFramework.Food>()
+                {
+                    new EntityFramework.Food()
+                    {
+                        Id = 1,
+                        Name = "Pepsi",
+                        Price = 10000,
+                        CreationTime = DateTime.Now,
+                        Status = EntityFramework.Status.Active,
+                    }
+                }
+            });
         }
     }
 }
