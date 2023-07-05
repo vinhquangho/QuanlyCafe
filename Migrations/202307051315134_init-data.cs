@@ -21,13 +21,22 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.AreaTable",
+                "dbo.Bill",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        DateIn = c.DateTime(nullable: false),
+                        DateOut = c.DateTime(nullable: false),
+                        TableId = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
+                        TotalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        AccountId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Account", t => t.AccountId, cascadeDelete: true)
+                .ForeignKey("dbo.Table", t => t.TableId, cascadeDelete: true)
+                .Index(t => t.TableId)
+                .Index(t => t.AccountId);
             
             CreateTable(
                 "dbo.BillInfo",
@@ -44,32 +53,6 @@
                 .ForeignKey("dbo.Food", t => t.FoodId, cascadeDelete: true)
                 .Index(t => t.BillId)
                 .Index(t => t.FoodId);
-            
-            CreateTable(
-                "dbo.Bill",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        DateIn = c.DateTime(nullable: false),
-                        DateOut = c.DateTime(nullable: false),
-                        TableId = c.Int(nullable: false),
-                        Status = c.Int(nullable: false),
-                        TotalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Table", t => t.TableId, cascadeDelete: true)
-                .Index(t => t.TableId);
-            
-            CreateTable(
-                "dbo.Table",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        CreationTime = c.DateTime(nullable: false),
-                        Status = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Food",
@@ -97,24 +80,53 @@
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.Table",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        CreationTime = c.DateTime(nullable: false),
+                        Status = c.Int(nullable: false),
+                        AreaTableId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AreaTable", t => t.AreaTableId, cascadeDelete: true)
+                .Index(t => t.AreaTableId);
+            
+            CreateTable(
+                "dbo.AreaTable",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        CreationTime = c.DateTime(nullable: false),
+                        Status = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Bill", "TableId", "dbo.Table");
+            DropForeignKey("dbo.Table", "AreaTableId", "dbo.AreaTable");
             DropForeignKey("dbo.BillInfo", "FoodId", "dbo.Food");
             DropForeignKey("dbo.Food", "CategoryId", "dbo.Category");
             DropForeignKey("dbo.BillInfo", "BillId", "dbo.Bill");
-            DropForeignKey("dbo.Bill", "TableId", "dbo.Table");
+            DropForeignKey("dbo.Bill", "AccountId", "dbo.Account");
+            DropIndex("dbo.Table", new[] { "AreaTableId" });
             DropIndex("dbo.Food", new[] { "CategoryId" });
-            DropIndex("dbo.Bill", new[] { "TableId" });
             DropIndex("dbo.BillInfo", new[] { "FoodId" });
             DropIndex("dbo.BillInfo", new[] { "BillId" });
+            DropIndex("dbo.Bill", new[] { "AccountId" });
+            DropIndex("dbo.Bill", new[] { "TableId" });
+            DropTable("dbo.AreaTable");
+            DropTable("dbo.Table");
             DropTable("dbo.Category");
             DropTable("dbo.Food");
-            DropTable("dbo.Table");
-            DropTable("dbo.Bill");
             DropTable("dbo.BillInfo");
-            DropTable("dbo.AreaTable");
+            DropTable("dbo.Bill");
             DropTable("dbo.Account");
         }
     }

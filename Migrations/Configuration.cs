@@ -5,20 +5,20 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EntityFramework.AppDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<QuanlyCafe.EntityFramework.AppDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(EntityFramework.AppDbContext context)
+        protected override void Seed(QuanlyCafe.EntityFramework.AppDbContext context)
         {
             context.Accounts.AddOrUpdate(x => x.Id, new EntityFramework.Account()
             {
                 Id = 1,
                 UserName = "admin",
-                Password = "123456",
+                Password = "123qwe",
                 CreationTime = DateTime.Now,
                 DislayName = "admin",
                 Status = EntityFramework.Status.Active

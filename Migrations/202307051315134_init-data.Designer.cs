@@ -7,13 +7,13 @@ namespace QuanlyCafe.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class initdata1 : IMigrationMetadata
+    public sealed partial class initdata : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initdata1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initdata));
         
         string IMigrationMetadata.Id
         {
-            get { return "202307041306208_init-data-1"; }
+            get { return "202307051315134_init-data"; }
         }
         
         string IMigrationMetadata.Source
