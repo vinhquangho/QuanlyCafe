@@ -17,6 +17,7 @@ namespace QuanlyCafe.EntityFramework
         public string DislayName { get; set; }
         public DateTime CreationTime { get; set; }
         public Status Status { get; set; }
+        public List<Bill> Bills { get; set; }
     }
     public enum Status
     {

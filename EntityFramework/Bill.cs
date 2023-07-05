@@ -17,5 +17,8 @@ namespace QuanlyCafe.EntityFramework
         public Table Table { get; set; }
         public Status Status { get; set; }
         public decimal TotalPrice { get; set; }
+        public List<BillInfo> BillInfos { get; set; }
+        public int AccountId { get; set; }
+        public Account Account { get; set; }
     }
 }

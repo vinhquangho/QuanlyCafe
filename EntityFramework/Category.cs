@@ -14,5 +14,6 @@ namespace QuanlyCafe.EntityFramework
         public string Name { get; set; }
         public DateTime CreationTime { get; set; } = DateTime.Now;
         public Status Status { get; set; }
+        public List<Food> Foods { get; set; }
     }
 }

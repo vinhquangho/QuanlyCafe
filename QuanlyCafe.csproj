@@ -83,6 +83,10 @@
     <Compile Include="Migrations\202307041306208_init-data-1.designer.cs">
       <DependentUpon>202307041306208_init-data-1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307051238058_update-table.cs" />
+    <Compile Include="Migrations\202307051238058_update-table.designer.cs">
+      <DependentUpon>202307051238058_update-table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307041306208_init-data-1.resx">
       <DependentUpon>202307041306208_init-data-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307051238058_update-table.resx">
+      <DependentUpon>202307051238058_update-table.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
