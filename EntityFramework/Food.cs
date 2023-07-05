@@ -16,6 +16,6 @@ namespace QuanlyCafe.EntityFramework
         public DateTime CreationTime { get; set; } = DateTime.Now;
         public Status Status { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        //public Category Category { get; set; }
     }
 }

@@ -66,7 +66,30 @@ namespace QuanlyCafe
             dgvArea.DataSource = list;
             dgvArea.Columns["Id"].HeaderText = "Mã";
             dgvArea.Columns["Id"].ReadOnly = true;
-            dgvArea.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192,192,192);
+            dgvArea.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192, 192, 192);
+            dgvArea.Columns["Name"].HeaderText = "Tên";
+            dgvArea.Columns["CreationTime"].HeaderText = "Ngày tạo";
+            dgvArea.Columns["Status"].HeaderText = "Trạng thái";
+
+            if (dgvArea.Columns["btnUpdate"] == null)
+            {
+                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
+                btnUpdate.Text = "Sửa";
+                btnUpdate.Name = "btnUpdate";
+                btnUpdate.HeaderText = string.Empty;
+                btnUpdate.UseColumnTextForButtonValue = true;
+                dgvArea.Columns.Insert(4, btnUpdate);
+            }
+            // add nút xóa vào datagridview
+            if (dgvArea.Columns["btnDelete"] == null)
+            {
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+                btnDelete.Text = "Xóa";
+                btnDelete.Name = "btnDelete";
+                btnDelete.HeaderText = string.Empty;
+                btnDelete.UseColumnTextForButtonValue = true;
+                dgvArea.Columns.Insert(5, btnDelete);
+            }
 
             dgvArea.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
@@ -76,7 +99,31 @@ namespace QuanlyCafe
             dgvTable.DataSource = list;
             dgvTable.Columns["Id"].HeaderText = "Mã";
             dgvTable.Columns["Id"].ReadOnly = true;
-            dgvTable.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192,192,192);
+            dgvTable.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192, 192, 192);
+            dgvTable.Columns["Name"].HeaderText = "Tên";
+            dgvTable.Columns["CreationTime"].HeaderText = "Ngày tạo";
+            dgvTable.Columns["Status"].HeaderText = "Trạng thái";
+            dgvTable.Columns["AreaTableId"].HeaderText = "Khu vực";
+
+            if (dgvTable.Columns["btnUpdate"] == null)
+            {
+                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
+                btnUpdate.Text = "Sửa";
+                btnUpdate.Name = "btnUpdate";
+                btnUpdate.HeaderText = string.Empty;
+                btnUpdate.UseColumnTextForButtonValue = true;
+                dgvTable.Columns.Insert(5, btnUpdate);
+            }
+            // add nút xóa vào datagridview
+            if (dgvTable.Columns["btnDelete"] == null)
+            {
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+                btnDelete.Text = "Xóa";
+                btnDelete.Name = "btnDelete";
+                btnDelete.HeaderText = string.Empty;
+                btnDelete.UseColumnTextForButtonValue = true;
+                dgvTable.Columns.Insert(6, btnDelete);
+            }
 
             dgvTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
@@ -86,7 +133,30 @@ namespace QuanlyCafe
             dgvCategory.DataSource = list;
             dgvCategory.Columns["Id"].HeaderText = "Mã";
             dgvCategory.Columns["Id"].ReadOnly = true;
-            dgvCategory.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192,192,192);
+            dgvCategory.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192, 192, 192);
+            dgvCategory.Columns["Name"].HeaderText = "Tên";
+            dgvCategory.Columns["CreationTime"].HeaderText = "Ngày tạo";
+            dgvCategory.Columns["Status"].HeaderText = "Trạng thái";
+
+            if (dgvCategory.Columns["btnUpdate"] == null)
+            {
+                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
+                btnUpdate.Text = "Sửa";
+                btnUpdate.Name = "btnUpdate";
+                btnUpdate.HeaderText = string.Empty;
+                btnUpdate.UseColumnTextForButtonValue = true;
+                dgvCategory.Columns.Insert(4, btnUpdate);
+            }
+            // add nút xóa vào datagridview
+            if (dgvCategory.Columns["btnDelete"] == null)
+            {
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+                btnDelete.Text = "Xóa";
+                btnDelete.Name = "btnDelete";
+                btnDelete.HeaderText = string.Empty;
+                btnDelete.UseColumnTextForButtonValue = true;
+                dgvCategory.Columns.Insert(5, btnDelete);
+            }
 
             dgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
@@ -96,7 +166,32 @@ namespace QuanlyCafe
             dgvFood.DataSource = list;
             dgvFood.Columns["Id"].HeaderText = "Mã";
             dgvFood.Columns["Id"].ReadOnly = true;
-            dgvFood.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192,192,192);
+            dgvFood.Columns["Id"].DefaultCellStyle.BackColor = Color.FromArgb(192, 192, 192);
+            dgvFood.Columns["Name"].HeaderText = "Tên";
+            dgvFood.Columns["CreationTime"].HeaderText = "Ngày tạo";
+            dgvFood.Columns["Status"].HeaderText = "Trạng thái";
+            dgvFood.Columns["Price"].HeaderText = "Giá";
+            dgvFood.Columns["CategoryId"].HeaderText = "Loại món";
+
+            if (dgvFood.Columns["btnUpdate"] == null)
+            {
+                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
+                btnUpdate.Text = "Sửa";
+                btnUpdate.Name = "btnUpdate";
+                btnUpdate.HeaderText = string.Empty;
+                btnUpdate.UseColumnTextForButtonValue = true;
+                dgvFood.Columns.Insert(6, btnUpdate);
+            }
+            // add nút xóa vào datagridview
+            if (dgvFood.Columns["btnDelete"] == null)
+            {
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+                btnDelete.Text = "Xóa";
+                btnDelete.Name = "btnDelete";
+                btnDelete.HeaderText = string.Empty;
+                btnDelete.UseColumnTextForButtonValue = true;
+                dgvFood.Columns.Insert(7, btnDelete);
+            }
 
             dgvFood.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
@@ -131,13 +226,21 @@ namespace QuanlyCafe
 
         #endregion
 
-        private void dgvAccount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //private void dgvAccount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (dgvAccount.Columns[e.ColumnIndex].Name == "Status")
+        //    {
+        //        var enumData = (Status)e.Value;
+        //        e.Value = enumData.GetType().GetMember(enumData.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+        //    }
+        //}
+        private List<Select> GetSatus()
         {
-            if (dgvAccount.Columns[e.ColumnIndex].Name == "Status")
+            return new List<Select>()
             {
-                var enumData = (Status)e.Value;
-                e.Value = enumData.GetType().GetMember(enumData.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
-            }
+                new Select(){ Id = 1 , Name = "Đang hoạt động" },
+                new Select(){ Id = 2, Name = "Ngừng hoạt động" }
+            };
         }
     }
 }

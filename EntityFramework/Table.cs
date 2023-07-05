@@ -15,6 +15,6 @@ namespace QuanlyCafe.EntityFramework
         public DateTime CreationTime { get; set; } = DateTime.Now;
         public Status Status { get; set; }
         public int AreaTableId { get; set; }
-        public AreaTable AreaTable { get; set; }
+        //public AreaTable AreaTable { get; set; }
     }
 }

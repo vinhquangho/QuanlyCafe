@@ -62,6 +62,7 @@
     <Compile Include="EntityFramework\BillInfo.cs" />
     <Compile Include="EntityFramework\Category.cs" />
     <Compile Include="EntityFramework\Food.cs" />
+    <Compile Include="EntityFramework\Select.cs" />
     <Compile Include="EntityFramework\Table.cs" />
     <Compile Include="fLogin.cs">
       <SubType>Form</SubType>
