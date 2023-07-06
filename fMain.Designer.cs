@@ -124,7 +124,7 @@
             this.txtAreaId.Name = "txtAreaId";
             this.txtAreaId.Size = new System.Drawing.Size(178, 20);
             this.txtAreaId.TabIndex = 6;
-            this.txtAreaId.Visible = false;
+            this.txtAreaId.TextChanged += new System.EventHandler(this.txtAreaId_TextChanged);
             // 
             // txtAreaName
             // 
@@ -158,6 +158,7 @@
             this.dgvArea.Name = "dgvArea";
             this.dgvArea.Size = new System.Drawing.Size(761, 316);
             this.dgvArea.TabIndex = 0;
+            this.dgvArea.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvArea_CellFormatting);
             // 
             // tpTable
             // 
@@ -190,7 +191,7 @@
             this.txtTableId.Name = "txtTableId";
             this.txtTableId.Size = new System.Drawing.Size(178, 20);
             this.txtTableId.TabIndex = 9;
-            this.txtTableId.Visible = false;
+            this.txtTableId.TextChanged += new System.EventHandler(this.txtTableId_TextChanged);
             // 
             // txtTableName
             // 
@@ -224,6 +225,7 @@
             this.dgvTable.Name = "dgvTable";
             this.dgvTable.Size = new System.Drawing.Size(761, 316);
             this.dgvTable.TabIndex = 1;
+            this.dgvTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTable_CellFormatting);
             // 
             // tpCategory
             // 
@@ -247,7 +249,7 @@
             this.txtCategoryId.Name = "txtCategoryId";
             this.txtCategoryId.Size = new System.Drawing.Size(178, 20);
             this.txtCategoryId.TabIndex = 9;
-            this.txtCategoryId.Visible = false;
+            this.txtCategoryId.TextChanged += new System.EventHandler(this.txtCategoryId_TextChanged);
             // 
             // txtCategoryName
             // 
@@ -277,10 +279,11 @@
             // dgvCategory
             // 
             this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategory.Location = new System.Drawing.Point(0, 104);
+            this.dgvCategory.Location = new System.Drawing.Point(0, 108);
             this.dgvCategory.Name = "dgvCategory";
-            this.dgvCategory.Size = new System.Drawing.Size(761, 316);
+            this.dgvCategory.Size = new System.Drawing.Size(761, 312);
             this.dgvCategory.TabIndex = 1;
+            this.dgvCategory.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvCategory_CellFormatting);
             // 
             // tpFood
             // 
@@ -302,6 +305,11 @@
             // txtFoodPrice
             // 
             this.txtFoodPrice.Location = new System.Drawing.Point(231, 32);
+            this.txtFoodPrice.Maximum = new decimal(new int[] {
+            1215752191,
+            23,
+            0,
+            0});
             this.txtFoodPrice.Name = "txtFoodPrice";
             this.txtFoodPrice.Size = new System.Drawing.Size(178, 20);
             this.txtFoodPrice.TabIndex = 15;
@@ -321,7 +329,7 @@
             this.txtFoodId.Name = "txtFoodId";
             this.txtFoodId.Size = new System.Drawing.Size(178, 20);
             this.txtFoodId.TabIndex = 12;
-            this.txtFoodId.Visible = false;
+            this.txtFoodId.TextChanged += new System.EventHandler(this.txtFoodId_TextChanged);
             // 
             // txtFoodName
             // 
@@ -355,6 +363,7 @@
             this.dgvFood.Name = "dgvFood";
             this.dgvFood.Size = new System.Drawing.Size(761, 316);
             this.dgvFood.TabIndex = 2;
+            this.dgvFood.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvFood_CellFormatting);
             // 
             // tbAccount
             // 
@@ -394,7 +403,7 @@
             this.txtAccountId.Name = "txtAccountId";
             this.txtAccountId.Size = new System.Drawing.Size(178, 20);
             this.txtAccountId.TabIndex = 12;
-            this.txtAccountId.Visible = false;
+            this.txtAccountId.TextChanged += new System.EventHandler(this.txtAccountId_TextChanged);
             // 
             // txtAccountUserName
             // 
@@ -428,7 +437,7 @@
             this.dgvAccount.Name = "dgvAccount";
             this.dgvAccount.Size = new System.Drawing.Size(761, 316);
             this.dgvAccount.TabIndex = 2;
-            //this.dgvAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAccount_CellFormatting);
+            this.dgvAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvaccount_cellformatting);
             // 
             // fMain
             // 

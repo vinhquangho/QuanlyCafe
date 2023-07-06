@@ -42,6 +42,24 @@
                 }
             });
 
+            context.AreaTables.AddOrUpdate(x => x.Id, new EntityFramework.AreaTable()
+            {
+                Id = 2,
+                Name = "Khu B",
+                CreationTime = DateTime.Now,
+                Status = EntityFramework.Status.Active,
+                Tables = new System.Collections.Generic.List<EntityFramework.Table>()
+                {
+                    new EntityFramework.Table()
+                    {
+                        Id = 2,
+                        Name = "Bàn số 1",
+                        CreationTime =DateTime.Now,
+                        Status = EntityFramework.Status.Active,
+                    }
+                }
+            });
+
             context.Categories.AddOrUpdate(x => x.Id, new EntityFramework.Category()
             {
                 Id = 1,

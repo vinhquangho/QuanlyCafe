@@ -24,6 +24,18 @@ namespace QuanlyCafe
             LoadCategory();
             LoadFood();
             LoadAccount();
+            LoadComboboxStatus(ccbAreaStatus);
+            LoadComboboxStatus(cbbTableStatus);
+            LoadComboboxStatus(cbbCategoryStatus);
+            LoadComboboxStatus(ccbFoodStatus);
+            LoadComboboxStatus(cbbAccountStatus);
+            BindingArea();
+            BindingTable();
+            BindingCategory();
+            BindingFood();
+            BindingAccount();
+            LoadCombboxArea();
+            LoadComboboxFood();
         }
         #region load data
         public void LoadAccount()
@@ -39,15 +51,6 @@ namespace QuanlyCafe
             dgvAccount.Columns["CreationTime"].HeaderText = "Ngày tạo";
             dgvAccount.Columns["Status"].HeaderText = "Trạng thái";
             dgvAccount.Columns["Password"].HeaderText = "Mật khẩu";
-            if (dgvAccount.Columns["btnUpdate"] == null)
-            {
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.Text = "Sửa";
-                btnUpdate.Name = "btnUpdate";
-                btnUpdate.HeaderText = string.Empty;
-                btnUpdate.UseColumnTextForButtonValue = true;
-                dgvAccount.Columns.Insert(6, btnUpdate);
-            }
             // add nút xóa vào datagridview
             if (dgvAccount.Columns["btnDelete"] == null)
             {
@@ -56,7 +59,7 @@ namespace QuanlyCafe
                 btnDelete.Name = "btnDelete";
                 btnDelete.HeaderText = string.Empty;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dgvAccount.Columns.Insert(7, btnDelete);
+                dgvAccount.Columns.Insert(6, btnDelete);
             }
             dgvAccount.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
@@ -71,15 +74,6 @@ namespace QuanlyCafe
             dgvArea.Columns["CreationTime"].HeaderText = "Ngày tạo";
             dgvArea.Columns["Status"].HeaderText = "Trạng thái";
 
-            if (dgvArea.Columns["btnUpdate"] == null)
-            {
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.Text = "Sửa";
-                btnUpdate.Name = "btnUpdate";
-                btnUpdate.HeaderText = string.Empty;
-                btnUpdate.UseColumnTextForButtonValue = true;
-                dgvArea.Columns.Insert(4, btnUpdate);
-            }
             // add nút xóa vào datagridview
             if (dgvArea.Columns["btnDelete"] == null)
             {
@@ -88,7 +82,7 @@ namespace QuanlyCafe
                 btnDelete.Name = "btnDelete";
                 btnDelete.HeaderText = string.Empty;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dgvArea.Columns.Insert(5, btnDelete);
+                dgvArea.Columns.Insert(4, btnDelete);
             }
 
             dgvArea.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -105,15 +99,6 @@ namespace QuanlyCafe
             dgvTable.Columns["Status"].HeaderText = "Trạng thái";
             dgvTable.Columns["AreaTableId"].HeaderText = "Khu vực";
 
-            if (dgvTable.Columns["btnUpdate"] == null)
-            {
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.Text = "Sửa";
-                btnUpdate.Name = "btnUpdate";
-                btnUpdate.HeaderText = string.Empty;
-                btnUpdate.UseColumnTextForButtonValue = true;
-                dgvTable.Columns.Insert(5, btnUpdate);
-            }
             // add nút xóa vào datagridview
             if (dgvTable.Columns["btnDelete"] == null)
             {
@@ -122,7 +107,7 @@ namespace QuanlyCafe
                 btnDelete.Name = "btnDelete";
                 btnDelete.HeaderText = string.Empty;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dgvTable.Columns.Insert(6, btnDelete);
+                dgvTable.Columns.Insert(5, btnDelete);
             }
 
             dgvTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -138,15 +123,7 @@ namespace QuanlyCafe
             dgvCategory.Columns["CreationTime"].HeaderText = "Ngày tạo";
             dgvCategory.Columns["Status"].HeaderText = "Trạng thái";
 
-            if (dgvCategory.Columns["btnUpdate"] == null)
-            {
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.Text = "Sửa";
-                btnUpdate.Name = "btnUpdate";
-                btnUpdate.HeaderText = string.Empty;
-                btnUpdate.UseColumnTextForButtonValue = true;
-                dgvCategory.Columns.Insert(4, btnUpdate);
-            }
+
             // add nút xóa vào datagridview
             if (dgvCategory.Columns["btnDelete"] == null)
             {
@@ -155,7 +132,7 @@ namespace QuanlyCafe
                 btnDelete.Name = "btnDelete";
                 btnDelete.HeaderText = string.Empty;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dgvCategory.Columns.Insert(5, btnDelete);
+                dgvCategory.Columns.Insert(4, btnDelete);
             }
 
             dgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -173,15 +150,7 @@ namespace QuanlyCafe
             dgvFood.Columns["Price"].HeaderText = "Giá";
             dgvFood.Columns["CategoryId"].HeaderText = "Loại món";
 
-            if (dgvFood.Columns["btnUpdate"] == null)
-            {
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.Text = "Sửa";
-                btnUpdate.Name = "btnUpdate";
-                btnUpdate.HeaderText = string.Empty;
-                btnUpdate.UseColumnTextForButtonValue = true;
-                dgvFood.Columns.Insert(6, btnUpdate);
-            }
+
             // add nút xóa vào datagridview
             if (dgvFood.Columns["btnDelete"] == null)
             {
@@ -190,14 +159,45 @@ namespace QuanlyCafe
                 btnDelete.Name = "btnDelete";
                 btnDelete.HeaderText = string.Empty;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dgvFood.Columns.Insert(7, btnDelete);
+                dgvFood.Columns.Insert(6, btnDelete);
             }
 
             dgvFood.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         #endregion
+        #region binding data
 
+        private void BindingArea()
+        {
+            txtAreaId.DataBindings.Add(new Binding("Text", dgvArea.DataSource, "Id", true, DataSourceUpdateMode.Never));
+            txtAreaName.DataBindings.Add(new Binding("Text", dgvArea.DataSource, "Name", true, DataSourceUpdateMode.Never));
+        }
+        private void BindingTable()
+        {
+            txtTableId.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Id", true, DataSourceUpdateMode.Never));
+            txtTableName.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Name", true, DataSourceUpdateMode.Never));
+        }
+
+        private void BindingCategory()
+        {
+            txtCategoryId.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "Id", true, DataSourceUpdateMode.Never));
+            txtCategoryName.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "Name", true, DataSourceUpdateMode.Never));
+        }
+        private void BindingFood()
+        {
+            txtFoodId.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "Id", true, DataSourceUpdateMode.Never));
+            txtFoodName.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "Name", true, DataSourceUpdateMode.Never));
+            txtFoodPrice.DataBindings.Add(new Binding("Value", dgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
+        }
+        private void BindingAccount()
+        {
+            txtAccountId.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Id", true, DataSourceUpdateMode.Never));
+            txtAccountUserName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
+            txtAccountDisplayName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "DislayName", true, DataSourceUpdateMode.Never));
+            txtAccountPassword.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Password", true, DataSourceUpdateMode.Never));
+        }
+        #endregion
         #region exe data
         private void btnCreateArea_Click(object sender, EventArgs e)
         {
@@ -226,14 +226,6 @@ namespace QuanlyCafe
 
         #endregion
 
-        //private void dgvAccount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        //{
-        //    if (dgvAccount.Columns[e.ColumnIndex].Name == "Status")
-        //    {
-        //        var enumData = (Status)e.Value;
-        //        e.Value = enumData.GetType().GetMember(enumData.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
-        //    }
-        //}
         private List<Select> GetSatus()
         {
             return new List<Select>()
@@ -241,6 +233,156 @@ namespace QuanlyCafe
                 new Select(){ Id = 1 , Name = "Đang hoạt động" },
                 new Select(){ Id = 2, Name = "Ngừng hoạt động" }
             };
+        }
+        private void LoadComboboxStatus(ComboBox comboBox)
+        {
+            comboBox.DataSource = GetSatus();
+            comboBox.DisplayMember = "Name";
+            comboBox.ValueMember = "Id";
+        }
+        private void LoadCombboxArea()
+        {
+            var list = _dbContext.AreaTables.ToList();
+            cbbAreaTable.DataSource = list;
+            cbbAreaTable.DisplayMember = "Name";
+            cbbAreaTable.ValueMember = "Id";
+        }
+        private void LoadComboboxFood()
+        {
+            var list = _dbContext.Categories.ToList();
+            cbbFoodCategory.DataSource = list;
+            cbbFoodCategory.DisplayMember = "Name";
+            cbbFoodCategory.ValueMember = "Id";
+        }
+        private void txtAreaId_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvArea.SelectedCells.Count > 0)
+                {
+                    int id = (int)dgvArea.SelectedCells[0].OwningRow.Cells["Status"].Value;
+                    var index = GetSatus().FindIndex(x => x.Id == id);
+                    ccbAreaStatus.SelectedIndex = index;
+                }
+            }
+            catch (Exception exception) { }
+        }
+
+        private void txtTableId_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvTable.SelectedCells.Count > 0)
+                {
+                    int id = (int)dgvTable.SelectedCells[0].OwningRow.Cells["Status"].Value;
+                    var index = GetSatus().FindIndex(x => x.Id == id);
+                    cbbTableStatus.SelectedIndex = index;
+
+                    var areaId = (int)dgvTable.SelectedCells[0].OwningRow.Cells["AreaTableId"].Value;
+                    var areaIndex = _dbContext.AreaTables.ToList().FindIndex(f => f.Id == areaId);
+                    cbbAreaTable.SelectedIndex = areaIndex;
+                }
+            }
+            catch (Exception exception) { }
+        }
+
+        private void txtCategoryId_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvCategory.SelectedCells.Count > 0)
+                {
+                    int id = (int)dgvCategory.SelectedCells[0].OwningRow.Cells["Status"].Value;
+                    var index = GetSatus().FindIndex(x => x.Id == id);
+                    cbbCategoryStatus.SelectedIndex = index;
+                }
+            }
+            catch (Exception exception) { }
+        }
+
+        private void txtFoodId_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvFood.SelectedCells.Count > 0)
+                {
+                    int id = (int)dgvFood.SelectedCells[0].OwningRow.Cells["Status"].Value;
+                    var index = GetSatus().FindIndex(x => x.Id == id);
+                    ccbFoodStatus.SelectedIndex = index;
+
+                    var foodId = (int)dgvTable.SelectedCells[0].OwningRow.Cells["CategoryId"].Value;
+                    var foodIndex = _dbContext.Categories.ToList().FindIndex(f => f.Id == foodId);
+                    cbbFoodCategory.SelectedIndex = foodIndex;
+                }
+            }
+            catch (Exception exception) { }
+        }
+
+        private void txtAccountId_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvAccount.SelectedCells.Count > 0)
+                {
+                    int id = (int)dgvFood.SelectedCells[0].OwningRow.Cells["Status"].Value;
+                    var index = GetSatus().FindIndex(x => x.Id == id);
+                    cbbAccountStatus.SelectedIndex = index;
+                }
+            }
+            catch (Exception exception) { }
+        }
+        private void dgvaccount_cellformatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvAccount.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var enumdata = (Status)e.Value;
+                e.Value = enumdata.GetType().GetMember(enumdata.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+            }
+        }
+        private void dgvFood_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvFood.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var enumdata = (Status)e.Value;
+                e.Value = enumdata.GetType().GetMember(enumdata.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+            }
+            if (dgvFood.Columns[e.ColumnIndex].Name == "CategoryId")
+            {
+                var id = (int)e.Value;
+                e.Value = _dbContext.Categories.FirstOrDefault(f => f.Id == id).Name;
+            }
+        }
+
+        private void dgvCategory_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvCategory.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var enumdata = (Status)e.Value;
+                e.Value = enumdata.GetType().GetMember(enumdata.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+            }
+        }
+
+        private void dgvTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvTable.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var enumdata = (Status)e.Value;
+                e.Value = enumdata.GetType().GetMember(enumdata.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+            }
+            if (dgvTable.Columns[e.ColumnIndex].Name == "AreaTableId")
+            {
+                var id = (int)e.Value;
+                e.Value = _dbContext.AreaTables.FirstOrDefault(f => f.Id == id).Name;
+            }
+        }
+
+        private void dgvArea_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvArea.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var enumdata = (Status)e.Value;
+                e.Value = enumdata.GetType().GetMember(enumdata.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+            }
         }
     }
 }
