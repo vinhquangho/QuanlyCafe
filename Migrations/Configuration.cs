@@ -24,6 +24,16 @@
                 Status = EntityFramework.Status.Active
             });
 
+            context.Accounts.AddOrUpdate(x => x.Id, new EntityFramework.Account()
+            {
+                Id = 2,
+                UserName = "nv",
+                Password = "123qwe",
+                CreationTime = DateTime.Now,
+                DislayName = "nv",
+                Status = EntityFramework.Status.DeActive
+            });
+
             context.AreaTables.AddOrUpdate(x => x.Id, new EntityFramework.AreaTable()
             {
                 Id = 1,
@@ -47,7 +57,7 @@
                 Id = 2,
                 Name = "Khu B",
                 CreationTime = DateTime.Now,
-                Status = EntityFramework.Status.Active,
+                Status = EntityFramework.Status.DeActive,
                 Tables = new System.Collections.Generic.List<EntityFramework.Table>()
                 {
                     new EntityFramework.Table()
@@ -55,7 +65,7 @@
                         Id = 2,
                         Name = "Bàn số 1",
                         CreationTime =DateTime.Now,
-                        Status = EntityFramework.Status.Active,
+                        Status = EntityFramework.Status.DeActive,
                     }
                 }
             });
@@ -75,6 +85,25 @@
                         Price = 10000,
                         CreationTime = DateTime.Now,
                         Status = EntityFramework.Status.Active,
+                    }
+                }
+            });
+
+            context.Categories.AddOrUpdate(x => x.Id, new EntityFramework.Category()
+            {
+                Id = 2,
+                Name = "Cafe",
+                CreationTime = DateTime.Now,
+                Status = EntityFramework.Status.DeActive,
+                Foods = new System.Collections.Generic.List<EntityFramework.Food>()
+                {
+                    new EntityFramework.Food()
+                    {
+                        Id = 2,
+                        Name = "Cafe Đá",
+                        Price = 8000,
+                        CreationTime = DateTime.Now,
+                        Status = EntityFramework.Status.DeActive,
                     }
                 }
             });

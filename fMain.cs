@@ -201,29 +201,143 @@ namespace QuanlyCafe
         #region exe data
         private void btnCreateArea_Click(object sender, EventArgs e)
         {
-
+            var areaName = txtAreaName.Text;
+            var areaStatus = (Status)ccbAreaStatus.SelectedValue;
+            _dbContext.AreaTables.Add(new AreaTable() { Name = areaName, Status = areaStatus });
+            _dbContext.SaveChanges();
+            MessageBox.Show("Thêm thành công khu vực!", "Thông báo", MessageBoxButtons.OK);
+            LoadArea();
         }
 
         private void btnCreateTable_Click(object sender, EventArgs e)
         {
-
+            var tableName = txtTableName.Text;
+            var tableStatus = (Status)cbbTableStatus.SelectedValue;
+            var areaId = (int)cbbAreaTable.SelectedValue;
+            _dbContext.Tables.Add(new Table() { Name = tableName, Status = tableStatus, AreaTableId = areaId });
+            _dbContext.SaveChanges();
+            MessageBox.Show("Thêm thành công bàn phục vụ!", "Thông báo", MessageBoxButtons.OK);
+            LoadTable();
         }
 
         private void btnCreateCategory_Click(object sender, EventArgs e)
         {
-
+            var categoryName = txtCategoryName.Text;
+            var categoryStatus = (Status)cbbCategoryStatus.SelectedValue;
+            _dbContext.Categories.Add(new Category() { Name = categoryName, Status = categoryStatus });
+            _dbContext.SaveChanges();
+            MessageBox.Show("Thêm thành công loại món ăn!", "Thông báo", MessageBoxButtons.OK);
+            LoadCategory();
         }
 
         private void btnCreateFood_Click(object sender, EventArgs e)
         {
-
+            var foodName = txtFoodName.Text;
+            var foodPrice = txtFoodPrice.Value;
+            var foodStatus = (Status)ccbFoodStatus.SelectedValue;
+            var cagoryId = (int)cbbFoodCategory.SelectedValue;
+            _dbContext.Foods.Add(new Food() { Name = foodName, Price = foodPrice, CategoryId = cagoryId, Status = foodStatus });
+            _dbContext.SaveChanges();
+            MessageBox.Show("Thêm thành công món ăn!", "Thông báo", MessageBoxButtons.OK);
+            LoadFood();
         }
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
+            var userName = txtAccountUserName.Text;
+            var password = txtAccountPassword.Text;
+            var displayName = txtAccountDisplayName.Text;
+            var status = (Status)cbbAccountStatus.SelectedValue;
+            _dbContext.Accounts.Add(new Account() { UserName = userName, Password = password, DislayName = displayName, Status = status });
+            _dbContext.SaveChanges();
+            MessageBox.Show("Thêm thành công nhân viên!", "Thông báo", MessageBoxButtons.OK);
+            LoadAccount();
 
         }
+        private void btnUpdateAccount_Click(object sender, EventArgs e)
+        {
+            var accountId = int.Parse(txtAccountId.Text);
+            var userName = txtAccountUserName.Text;
+            var password = txtAccountPassword.Text;
+            var displayName = txtAccountDisplayName.Text;
+            var status = (Status)cbbAccountStatus.SelectedValue;
 
+            var accountModel = _dbContext.Accounts.FirstOrDefault(f => f.Id == accountId);
+            accountModel.UserName = userName;
+            accountModel.Password = password;
+            accountModel.DislayName = displayName;
+            accountModel.Status = status;
+
+            _dbContext.SaveChanges();
+            MessageBox.Show("Cập nhật thành công tài khoản!", "Thông báo", MessageBoxButtons.OK);
+            LoadAccount();
+        }
+
+        private void btnUpdateFood_Click(object sender, EventArgs e)
+        {
+            var foodId = int.Parse(txtFoodId.Text);
+            var foodName = txtFoodName.Text;
+            var foodPrice = txtFoodPrice.Value;
+            var foodStatus = (Status)ccbFoodStatus.SelectedValue;
+            var categoryId = (int)cbbFoodCategory.SelectedValue;
+
+            var foodModel = _dbContext.Foods.FirstOrDefault(f => f.Id == foodId);
+            foodModel.Name = foodName;
+            foodModel.Price = foodPrice;
+            foodModel.Status = foodStatus;
+            foodModel.CategoryId = categoryId;
+
+            _dbContext.SaveChanges();
+            MessageBox.Show("Cập nhật thành công món ăn!", "Thông báo", MessageBoxButtons.OK);
+            LoadFood();
+        }
+
+        private void btnUpdateCategory_Click(object sender, EventArgs e)
+        {
+            var categoryId = int.Parse(txtCategoryId.Text);
+            var categoryName = txtCategoryName.Text;
+            var categoryStatus = (Status)cbbCategoryStatus.SelectedValue;
+
+            var categoryModel = _dbContext.Categories.FirstOrDefault(f => f.Id == categoryId);
+            categoryModel.Name = categoryName;
+            categoryModel.Status = categoryStatus;
+
+            _dbContext.SaveChanges();
+            MessageBox.Show("Cập nhật thành công loại món ăn!", "Thông báo", MessageBoxButtons.OK);
+            LoadCategory();
+        }
+
+        private void btnUpdateTable_Click(object sender, EventArgs e)
+        {
+            var tableId = int.Parse(txtTableId.Text);
+            var tableName = txtTableName.Text;
+            var tableStatus = (Status)cbbTableStatus.SelectedValue;
+            var areaId = (int)cbbAreaTable.SelectedValue;
+
+            var tableModel = _dbContext.Tables.FirstOrDefault(f => f.Id == tableId);
+            tableModel.Name = tableName;
+            tableModel.Status = tableStatus;
+            tableModel.AreaTableId = areaId;
+
+            _dbContext.SaveChanges();
+            MessageBox.Show("Cập nhật thành công bàn phục vụ!", "Thông báo", MessageBoxButtons.OK);
+            LoadTable();
+        }
+
+        private void btnUpdateArea_Click(object sender, EventArgs e)
+        {
+            var areaId = int.Parse(txtAreaId.Text);
+            var areaName = txtAreaName.Text;
+            var areaStatus = (Status)ccbAreaStatus.SelectedValue;
+
+            var areaModel = _dbContext.AreaTables.FirstOrDefault(f => f.Id == areaId);
+            areaModel.Name = areaName;
+            areaModel.Status = areaStatus;
+
+            _dbContext.SaveChanges();
+            MessageBox.Show("Cập nhật thành công khu vực!", "Thông báo", MessageBoxButtons.OK);
+            LoadArea();
+        }
         #endregion
 
         private List<Select> GetSatus()
@@ -310,7 +424,7 @@ namespace QuanlyCafe
                     var index = GetSatus().FindIndex(x => x.Id == id);
                     ccbFoodStatus.SelectedIndex = index;
 
-                    var foodId = (int)dgvTable.SelectedCells[0].OwningRow.Cells["CategoryId"].Value;
+                    var foodId = (int)dgvFood.SelectedCells[0].OwningRow.Cells["CategoryId"].Value;
                     var foodIndex = _dbContext.Categories.ToList().FindIndex(f => f.Id == foodId);
                     cbbFoodCategory.SelectedIndex = foodIndex;
                 }
@@ -378,10 +492,81 @@ namespace QuanlyCafe
 
         private void dgvArea_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvArea.Columns[e.ColumnIndex].Name == "Status")
+            if (dgvArea.Columns[e.ColumnIndex].Name == "Status" && e.Value != null)
             {
                 var enumdata = (Status)e.Value;
                 e.Value = enumdata.GetType().GetMember(enumdata.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+            }
+        }
+
+        private void tcMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadCombboxArea();
+            LoadComboboxFood();
+            //LoadArea();
+            //LoadTable();
+            //LoadCategory();
+            //LoadFood();
+            //LoadAccount();
+        }
+
+        private void dgvArea_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var data = (dgvArea.DataSource as List<AreaTable>)[e.RowIndex];
+            if (dgvArea.Columns[e.ColumnIndex].Name == "btnDelete")
+            {
+                _dbContext.AreaTables.Remove(data);
+                _dbContext.SaveChanges();
+                MessageBox.Show("Xóa thành công khu vực!", "Thông báo", MessageBoxButtons.OK);
+                LoadArea();
+            }
+        }
+
+        private void dgvTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var data = (dgvTable.DataSource as List<Table>)[e.RowIndex];
+            if (dgvTable.Columns[e.ColumnIndex].Name == "btnDelete")
+            {
+                _dbContext.Tables.Remove(data);
+                _dbContext.SaveChanges();
+                MessageBox.Show("Xóa thành công bàn phục vụ!", "Thông báo", MessageBoxButtons.OK);
+                LoadTable();
+            }
+        }
+
+        private void dgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var data = (dgvCategory.DataSource as List<Category>)[e.RowIndex];
+            if (dgvCategory.Columns[e.ColumnIndex].Name == "btnDelete")
+            {
+                _dbContext.Categories.Remove(data);
+                _dbContext.SaveChanges();
+                MessageBox.Show("Xóa thành công loại món ăn!", "Thông báo", MessageBoxButtons.OK);
+                LoadCategory();
+            }
+        }
+
+        private void dgvFood_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var data = (dgvFood.DataSource as List<Food>)[e.RowIndex];
+            if (dgvFood.Columns[e.ColumnIndex].Name == "btnDelete")
+            {
+                _dbContext.Foods.Remove(data);
+                _dbContext.SaveChanges();
+                MessageBox.Show("Xóa thành công món ăn!", "Thông báo", MessageBoxButtons.OK);
+                LoadFood();
+            }
+        }
+
+        private void dgvAccount_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var data = (dgvAccount.DataSource as List<Account>)[e.RowIndex];
+            if (dgvAccount.Columns[e.ColumnIndex].Name == "btnDelete")
+            {
+                _dbContext.Accounts.Remove(data);
+                _dbContext.SaveChanges();
+                MessageBox.Show("Xóa thành công tài khoản!", "Thông báo", MessageBoxButtons.OK);
+                LoadAccount();
             }
         }
     }

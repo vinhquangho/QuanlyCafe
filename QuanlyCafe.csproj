@@ -76,13 +76,9 @@
     <Compile Include="fMain.Designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202307051315134_init-data.cs" />
-    <Compile Include="Migrations\202307051315134_init-data.designer.cs">
-      <DependentUpon>202307051315134_init-data.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307060230056_init-1.cs" />
-    <Compile Include="Migrations\202307060230056_init-1.designer.cs">
-      <DependentUpon>202307060230056_init-1.cs</DependentUpon>
+    <Compile Include="Migrations\202307061246363_init-data.cs" />
+    <Compile Include="Migrations\202307061246363_init-data.designer.cs">
+      <DependentUpon>202307061246363_init-data.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -93,11 +89,8 @@
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307051315134_init-data.resx">
-      <DependentUpon>202307051315134_init-data.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307060230056_init-1.resx">
-      <DependentUpon>202307060230056_init-1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202307061246363_init-data.resx">
+      <DependentUpon>202307061246363_init-data.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

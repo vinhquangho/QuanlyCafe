@@ -65,6 +65,11 @@
             this.cbbAccountStatus = new System.Windows.Forms.ComboBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
+            this.btnUpdateArea = new System.Windows.Forms.Button();
+            this.btnUpdateTable = new System.Windows.Forms.Button();
+            this.btnUpdateCategory = new System.Windows.Forms.Button();
+            this.btnUpdateFood = new System.Windows.Forms.Button();
+            this.btnUpdateAccount = new System.Windows.Forms.Button();
             this.flpFmain.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.tpArea.SuspendLayout();
@@ -101,9 +106,11 @@
             this.tcMain.SelectedIndex = 0;
             this.tcMain.Size = new System.Drawing.Size(769, 446);
             this.tcMain.TabIndex = 0;
+            this.tcMain.SelectedIndexChanged += new System.EventHandler(this.tcMain_SelectedIndexChanged);
             // 
             // tpArea
             // 
+            this.tpArea.Controls.Add(this.btnUpdateArea);
             this.tpArea.Controls.Add(this.txtAreaId);
             this.tpArea.Controls.Add(this.txtAreaName);
             this.tpArea.Controls.Add(this.ccbAreaStatus);
@@ -120,32 +127,32 @@
             // txtAreaId
             // 
             this.txtAreaId.Enabled = false;
-            this.txtAreaId.Location = new System.Drawing.Point(50, 7);
+            this.txtAreaId.Location = new System.Drawing.Point(6, 8);
             this.txtAreaId.Name = "txtAreaId";
-            this.txtAreaId.Size = new System.Drawing.Size(178, 20);
+            this.txtAreaId.Size = new System.Drawing.Size(50, 20);
             this.txtAreaId.TabIndex = 6;
             this.txtAreaId.TextChanged += new System.EventHandler(this.txtAreaId_TextChanged);
             // 
             // txtAreaName
             // 
-            this.txtAreaName.Location = new System.Drawing.Point(234, 7);
+            this.txtAreaName.Location = new System.Drawing.Point(58, 8);
             this.txtAreaName.Name = "txtAreaName";
-            this.txtAreaName.Size = new System.Drawing.Size(178, 20);
+            this.txtAreaName.Size = new System.Drawing.Size(354, 20);
             this.txtAreaName.TabIndex = 4;
             // 
             // ccbAreaStatus
             // 
             this.ccbAreaStatus.FormattingEnabled = true;
-            this.ccbAreaStatus.Location = new System.Drawing.Point(418, 6);
+            this.ccbAreaStatus.Location = new System.Drawing.Point(418, 8);
             this.ccbAreaStatus.Name = "ccbAreaStatus";
             this.ccbAreaStatus.Size = new System.Drawing.Size(178, 21);
             this.ccbAreaStatus.TabIndex = 5;
             // 
             // btnCreateArea
             // 
-            this.btnCreateArea.Location = new System.Drawing.Point(602, 3);
+            this.btnCreateArea.Location = new System.Drawing.Point(602, 8);
             this.btnCreateArea.Name = "btnCreateArea";
-            this.btnCreateArea.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateArea.Size = new System.Drawing.Size(75, 21);
             this.btnCreateArea.TabIndex = 2;
             this.btnCreateArea.Text = "Thêm";
             this.btnCreateArea.UseVisualStyleBackColor = true;
@@ -158,10 +165,12 @@
             this.dgvArea.Name = "dgvArea";
             this.dgvArea.Size = new System.Drawing.Size(761, 316);
             this.dgvArea.TabIndex = 0;
+            this.dgvArea.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArea_CellContentClick);
             this.dgvArea.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvArea_CellFormatting);
             // 
             // tpTable
             // 
+            this.tpTable.Controls.Add(this.btnUpdateTable);
             this.tpTable.Controls.Add(this.cbbAreaTable);
             this.tpTable.Controls.Add(this.txtTableId);
             this.tpTable.Controls.Add(this.txtTableName);
@@ -179,40 +188,40 @@
             // cbbAreaTable
             // 
             this.cbbAreaTable.FormattingEnabled = true;
-            this.cbbAreaTable.Location = new System.Drawing.Point(234, 7);
+            this.cbbAreaTable.Location = new System.Drawing.Point(267, 8);
             this.cbbAreaTable.Name = "cbbAreaTable";
-            this.cbbAreaTable.Size = new System.Drawing.Size(178, 21);
+            this.cbbAreaTable.Size = new System.Drawing.Size(160, 21);
             this.cbbAreaTable.TabIndex = 10;
             // 
             // txtTableId
             // 
             this.txtTableId.Enabled = false;
-            this.txtTableId.Location = new System.Drawing.Point(234, 34);
+            this.txtTableId.Location = new System.Drawing.Point(6, 8);
             this.txtTableId.Name = "txtTableId";
-            this.txtTableId.Size = new System.Drawing.Size(178, 20);
+            this.txtTableId.Size = new System.Drawing.Size(50, 20);
             this.txtTableId.TabIndex = 9;
             this.txtTableId.TextChanged += new System.EventHandler(this.txtTableId_TextChanged);
             // 
             // txtTableName
             // 
-            this.txtTableName.Location = new System.Drawing.Point(418, 34);
+            this.txtTableName.Location = new System.Drawing.Point(62, 8);
             this.txtTableName.Name = "txtTableName";
-            this.txtTableName.Size = new System.Drawing.Size(178, 20);
+            this.txtTableName.Size = new System.Drawing.Size(199, 20);
             this.txtTableName.TabIndex = 7;
             // 
             // cbbTableStatus
             // 
             this.cbbTableStatus.FormattingEnabled = true;
-            this.cbbTableStatus.Location = new System.Drawing.Point(418, 6);
+            this.cbbTableStatus.Location = new System.Drawing.Point(433, 8);
             this.cbbTableStatus.Name = "cbbTableStatus";
-            this.cbbTableStatus.Size = new System.Drawing.Size(178, 21);
+            this.cbbTableStatus.Size = new System.Drawing.Size(160, 21);
             this.cbbTableStatus.TabIndex = 8;
             // 
             // btnCreateTable
             // 
-            this.btnCreateTable.Location = new System.Drawing.Point(602, 3);
+            this.btnCreateTable.Location = new System.Drawing.Point(599, 8);
             this.btnCreateTable.Name = "btnCreateTable";
-            this.btnCreateTable.Size = new System.Drawing.Size(75, 51);
+            this.btnCreateTable.Size = new System.Drawing.Size(75, 21);
             this.btnCreateTable.TabIndex = 5;
             this.btnCreateTable.Text = "Thêm";
             this.btnCreateTable.UseVisualStyleBackColor = true;
@@ -225,10 +234,12 @@
             this.dgvTable.Name = "dgvTable";
             this.dgvTable.Size = new System.Drawing.Size(761, 316);
             this.dgvTable.TabIndex = 1;
+            this.dgvTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTable_CellContentClick);
             this.dgvTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTable_CellFormatting);
             // 
             // tpCategory
             // 
+            this.tpCategory.Controls.Add(this.btnUpdateCategory);
             this.tpCategory.Controls.Add(this.txtCategoryId);
             this.tpCategory.Controls.Add(this.txtCategoryName);
             this.tpCategory.Controls.Add(this.cbbCategoryStatus);
@@ -245,32 +256,32 @@
             // txtCategoryId
             // 
             this.txtCategoryId.Enabled = false;
-            this.txtCategoryId.Location = new System.Drawing.Point(50, 7);
+            this.txtCategoryId.Location = new System.Drawing.Point(6, 8);
             this.txtCategoryId.Name = "txtCategoryId";
-            this.txtCategoryId.Size = new System.Drawing.Size(178, 20);
+            this.txtCategoryId.Size = new System.Drawing.Size(50, 20);
             this.txtCategoryId.TabIndex = 9;
             this.txtCategoryId.TextChanged += new System.EventHandler(this.txtCategoryId_TextChanged);
             // 
             // txtCategoryName
             // 
-            this.txtCategoryName.Location = new System.Drawing.Point(234, 7);
+            this.txtCategoryName.Location = new System.Drawing.Point(62, 8);
             this.txtCategoryName.Name = "txtCategoryName";
-            this.txtCategoryName.Size = new System.Drawing.Size(178, 20);
+            this.txtCategoryName.Size = new System.Drawing.Size(339, 20);
             this.txtCategoryName.TabIndex = 7;
             // 
             // cbbCategoryStatus
             // 
             this.cbbCategoryStatus.FormattingEnabled = true;
-            this.cbbCategoryStatus.Location = new System.Drawing.Point(418, 6);
+            this.cbbCategoryStatus.Location = new System.Drawing.Point(407, 8);
             this.cbbCategoryStatus.Name = "cbbCategoryStatus";
-            this.cbbCategoryStatus.Size = new System.Drawing.Size(178, 21);
+            this.cbbCategoryStatus.Size = new System.Drawing.Size(186, 21);
             this.cbbCategoryStatus.TabIndex = 8;
             // 
             // btnCreateCategory
             // 
-            this.btnCreateCategory.Location = new System.Drawing.Point(602, 3);
+            this.btnCreateCategory.Location = new System.Drawing.Point(599, 8);
             this.btnCreateCategory.Name = "btnCreateCategory";
-            this.btnCreateCategory.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateCategory.Size = new System.Drawing.Size(75, 21);
             this.btnCreateCategory.TabIndex = 5;
             this.btnCreateCategory.Text = "Thêm";
             this.btnCreateCategory.UseVisualStyleBackColor = true;
@@ -283,10 +294,12 @@
             this.dgvCategory.Name = "dgvCategory";
             this.dgvCategory.Size = new System.Drawing.Size(761, 312);
             this.dgvCategory.TabIndex = 1;
+            this.dgvCategory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellContentClick);
             this.dgvCategory.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvCategory_CellFormatting);
             // 
             // tpFood
             // 
+            this.tpFood.Controls.Add(this.btnUpdateFood);
             this.tpFood.Controls.Add(this.txtFoodPrice);
             this.tpFood.Controls.Add(this.cbbFoodCategory);
             this.tpFood.Controls.Add(this.txtFoodId);
@@ -304,53 +317,53 @@
             // 
             // txtFoodPrice
             // 
-            this.txtFoodPrice.Location = new System.Drawing.Point(231, 32);
+            this.txtFoodPrice.Location = new System.Drawing.Point(208, 8);
             this.txtFoodPrice.Maximum = new decimal(new int[] {
             1215752191,
             23,
             0,
             0});
             this.txtFoodPrice.Name = "txtFoodPrice";
-            this.txtFoodPrice.Size = new System.Drawing.Size(178, 20);
+            this.txtFoodPrice.Size = new System.Drawing.Size(140, 20);
             this.txtFoodPrice.TabIndex = 15;
             // 
             // cbbFoodCategory
             // 
             this.cbbFoodCategory.FormattingEnabled = true;
-            this.cbbFoodCategory.Location = new System.Drawing.Point(415, 31);
+            this.cbbFoodCategory.Location = new System.Drawing.Point(500, 8);
             this.cbbFoodCategory.Name = "cbbFoodCategory";
-            this.cbbFoodCategory.Size = new System.Drawing.Size(178, 21);
+            this.cbbFoodCategory.Size = new System.Drawing.Size(140, 21);
             this.cbbFoodCategory.TabIndex = 14;
             // 
             // txtFoodId
             // 
             this.txtFoodId.Enabled = false;
-            this.txtFoodId.Location = new System.Drawing.Point(47, 6);
+            this.txtFoodId.Location = new System.Drawing.Point(6, 8);
             this.txtFoodId.Name = "txtFoodId";
-            this.txtFoodId.Size = new System.Drawing.Size(178, 20);
+            this.txtFoodId.Size = new System.Drawing.Size(50, 20);
             this.txtFoodId.TabIndex = 12;
             this.txtFoodId.TextChanged += new System.EventHandler(this.txtFoodId_TextChanged);
             // 
             // txtFoodName
             // 
-            this.txtFoodName.Location = new System.Drawing.Point(231, 6);
+            this.txtFoodName.Location = new System.Drawing.Point(62, 8);
             this.txtFoodName.Name = "txtFoodName";
-            this.txtFoodName.Size = new System.Drawing.Size(178, 20);
+            this.txtFoodName.Size = new System.Drawing.Size(140, 20);
             this.txtFoodName.TabIndex = 10;
             // 
             // ccbFoodStatus
             // 
             this.ccbFoodStatus.FormattingEnabled = true;
-            this.ccbFoodStatus.Location = new System.Drawing.Point(415, 5);
+            this.ccbFoodStatus.Location = new System.Drawing.Point(354, 8);
             this.ccbFoodStatus.Name = "ccbFoodStatus";
-            this.ccbFoodStatus.Size = new System.Drawing.Size(178, 21);
+            this.ccbFoodStatus.Size = new System.Drawing.Size(140, 21);
             this.ccbFoodStatus.TabIndex = 11;
             // 
             // btnCreateFood
             // 
-            this.btnCreateFood.Location = new System.Drawing.Point(602, 3);
+            this.btnCreateFood.Location = new System.Drawing.Point(646, 6);
             this.btnCreateFood.Name = "btnCreateFood";
-            this.btnCreateFood.Size = new System.Drawing.Size(75, 49);
+            this.btnCreateFood.Size = new System.Drawing.Size(50, 24);
             this.btnCreateFood.TabIndex = 5;
             this.btnCreateFood.Text = "Thêm";
             this.btnCreateFood.UseVisualStyleBackColor = true;
@@ -363,10 +376,12 @@
             this.dgvFood.Name = "dgvFood";
             this.dgvFood.Size = new System.Drawing.Size(761, 316);
             this.dgvFood.TabIndex = 2;
+            this.dgvFood.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFood_CellContentClick);
             this.dgvFood.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvFood_CellFormatting);
             // 
             // tbAccount
             // 
+            this.tbAccount.Controls.Add(this.btnUpdateAccount);
             this.tbAccount.Controls.Add(this.txtAccountDisplayName);
             this.tbAccount.Controls.Add(this.txtAccountPassword);
             this.tbAccount.Controls.Add(this.txtAccountId);
@@ -384,47 +399,47 @@
             // 
             // txtAccountDisplayName
             // 
-            this.txtAccountDisplayName.Location = new System.Drawing.Point(418, 33);
+            this.txtAccountDisplayName.Location = new System.Drawing.Point(500, 8);
             this.txtAccountDisplayName.Name = "txtAccountDisplayName";
-            this.txtAccountDisplayName.Size = new System.Drawing.Size(178, 20);
+            this.txtAccountDisplayName.Size = new System.Drawing.Size(140, 20);
             this.txtAccountDisplayName.TabIndex = 14;
             // 
             // txtAccountPassword
             // 
-            this.txtAccountPassword.Location = new System.Drawing.Point(234, 33);
+            this.txtAccountPassword.Location = new System.Drawing.Point(208, 8);
             this.txtAccountPassword.Name = "txtAccountPassword";
-            this.txtAccountPassword.Size = new System.Drawing.Size(178, 20);
+            this.txtAccountPassword.Size = new System.Drawing.Size(140, 20);
             this.txtAccountPassword.TabIndex = 13;
             // 
             // txtAccountId
             // 
             this.txtAccountId.Enabled = false;
-            this.txtAccountId.Location = new System.Drawing.Point(50, 7);
+            this.txtAccountId.Location = new System.Drawing.Point(6, 8);
             this.txtAccountId.Name = "txtAccountId";
-            this.txtAccountId.Size = new System.Drawing.Size(178, 20);
+            this.txtAccountId.Size = new System.Drawing.Size(50, 20);
             this.txtAccountId.TabIndex = 12;
             this.txtAccountId.TextChanged += new System.EventHandler(this.txtAccountId_TextChanged);
             // 
             // txtAccountUserName
             // 
-            this.txtAccountUserName.Location = new System.Drawing.Point(234, 7);
+            this.txtAccountUserName.Location = new System.Drawing.Point(62, 8);
             this.txtAccountUserName.Name = "txtAccountUserName";
-            this.txtAccountUserName.Size = new System.Drawing.Size(178, 20);
+            this.txtAccountUserName.Size = new System.Drawing.Size(140, 20);
             this.txtAccountUserName.TabIndex = 10;
             // 
             // cbbAccountStatus
             // 
             this.cbbAccountStatus.FormattingEnabled = true;
-            this.cbbAccountStatus.Location = new System.Drawing.Point(418, 6);
+            this.cbbAccountStatus.Location = new System.Drawing.Point(354, 8);
             this.cbbAccountStatus.Name = "cbbAccountStatus";
-            this.cbbAccountStatus.Size = new System.Drawing.Size(178, 21);
+            this.cbbAccountStatus.Size = new System.Drawing.Size(140, 21);
             this.cbbAccountStatus.TabIndex = 11;
             // 
             // btnCreateAccount
             // 
-            this.btnCreateAccount.Location = new System.Drawing.Point(602, 3);
+            this.btnCreateAccount.Location = new System.Drawing.Point(646, 6);
             this.btnCreateAccount.Name = "btnCreateAccount";
-            this.btnCreateAccount.Size = new System.Drawing.Size(75, 50);
+            this.btnCreateAccount.Size = new System.Drawing.Size(50, 24);
             this.btnCreateAccount.TabIndex = 5;
             this.btnCreateAccount.Text = "Thêm";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
@@ -437,7 +452,58 @@
             this.dgvAccount.Name = "dgvAccount";
             this.dgvAccount.Size = new System.Drawing.Size(761, 316);
             this.dgvAccount.TabIndex = 2;
+            this.dgvAccount.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccount_CellContentClick);
             this.dgvAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvaccount_cellformatting);
+            // 
+            // btnUpdateArea
+            // 
+            this.btnUpdateArea.Location = new System.Drawing.Point(680, 8);
+            this.btnUpdateArea.Name = "btnUpdateArea";
+            this.btnUpdateArea.Size = new System.Drawing.Size(75, 21);
+            this.btnUpdateArea.TabIndex = 7;
+            this.btnUpdateArea.Text = "Sửa";
+            this.btnUpdateArea.UseVisualStyleBackColor = true;
+            this.btnUpdateArea.Click += new System.EventHandler(this.btnUpdateArea_Click);
+            // 
+            // btnUpdateTable
+            // 
+            this.btnUpdateTable.Location = new System.Drawing.Point(680, 8);
+            this.btnUpdateTable.Name = "btnUpdateTable";
+            this.btnUpdateTable.Size = new System.Drawing.Size(75, 21);
+            this.btnUpdateTable.TabIndex = 11;
+            this.btnUpdateTable.Text = "Sửa";
+            this.btnUpdateTable.UseVisualStyleBackColor = true;
+            this.btnUpdateTable.Click += new System.EventHandler(this.btnUpdateTable_Click);
+            // 
+            // btnUpdateCategory
+            // 
+            this.btnUpdateCategory.Location = new System.Drawing.Point(680, 8);
+            this.btnUpdateCategory.Name = "btnUpdateCategory";
+            this.btnUpdateCategory.Size = new System.Drawing.Size(75, 21);
+            this.btnUpdateCategory.TabIndex = 12;
+            this.btnUpdateCategory.Text = "Sửa";
+            this.btnUpdateCategory.UseVisualStyleBackColor = true;
+            this.btnUpdateCategory.Click += new System.EventHandler(this.btnUpdateCategory_Click);
+            // 
+            // btnUpdateFood
+            // 
+            this.btnUpdateFood.Location = new System.Drawing.Point(703, 6);
+            this.btnUpdateFood.Name = "btnUpdateFood";
+            this.btnUpdateFood.Size = new System.Drawing.Size(50, 24);
+            this.btnUpdateFood.TabIndex = 16;
+            this.btnUpdateFood.Text = "Sửa";
+            this.btnUpdateFood.UseVisualStyleBackColor = true;
+            this.btnUpdateFood.Click += new System.EventHandler(this.btnUpdateFood_Click);
+            // 
+            // btnUpdateAccount
+            // 
+            this.btnUpdateAccount.Location = new System.Drawing.Point(703, 6);
+            this.btnUpdateAccount.Name = "btnUpdateAccount";
+            this.btnUpdateAccount.Size = new System.Drawing.Size(50, 24);
+            this.btnUpdateAccount.TabIndex = 15;
+            this.btnUpdateAccount.Text = "Sửa";
+            this.btnUpdateAccount.UseVisualStyleBackColor = true;
+            this.btnUpdateAccount.Click += new System.EventHandler(this.btnUpdateAccount_Click);
             // 
             // fMain
             // 
@@ -508,5 +574,10 @@
         private System.Windows.Forms.ComboBox cbbAccountStatus;
         private System.Windows.Forms.Button btnCreateAccount;
         private System.Windows.Forms.DataGridView dgvAccount;
+        private System.Windows.Forms.Button btnUpdateArea;
+        private System.Windows.Forms.Button btnUpdateTable;
+        private System.Windows.Forms.Button btnUpdateCategory;
+        private System.Windows.Forms.Button btnUpdateFood;
+        private System.Windows.Forms.Button btnUpdateAccount;
     }
 }

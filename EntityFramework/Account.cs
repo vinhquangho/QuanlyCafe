@@ -15,7 +15,7 @@ namespace QuanlyCafe.EntityFramework
         public string UserName { get; set; }
         public string Password { get; set; }
         public string DislayName { get; set; }
-        public DateTime CreationTime { get; set; }
+        public DateTime CreationTime { get; set; } = DateTime.Now;
         public Status Status { get; set; }
         public List<Bill> Bills { get; set; }
     }

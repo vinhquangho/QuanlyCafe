@@ -70,17 +70,6 @@
                 .Index(t => t.CategoryId);
             
             CreateTable(
-                "dbo.Category",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        CreationTime = c.DateTime(nullable: false),
-                        Status = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Table",
                 c => new
                     {
@@ -105,14 +94,25 @@
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.Category",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        CreationTime = c.DateTime(nullable: false),
+                        Status = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Bill", "TableId", "dbo.Table");
-            DropForeignKey("dbo.Table", "AreaTableId", "dbo.AreaTable");
-            DropForeignKey("dbo.BillInfo", "FoodId", "dbo.Food");
             DropForeignKey("dbo.Food", "CategoryId", "dbo.Category");
+            DropForeignKey("dbo.Table", "AreaTableId", "dbo.AreaTable");
+            DropForeignKey("dbo.Bill", "TableId", "dbo.Table");
+            DropForeignKey("dbo.BillInfo", "FoodId", "dbo.Food");
             DropForeignKey("dbo.BillInfo", "BillId", "dbo.Bill");
             DropForeignKey("dbo.Bill", "AccountId", "dbo.Account");
             DropIndex("dbo.Table", new[] { "AreaTableId" });
@@ -121,9 +121,9 @@
             DropIndex("dbo.BillInfo", new[] { "BillId" });
             DropIndex("dbo.Bill", new[] { "AccountId" });
             DropIndex("dbo.Bill", new[] { "TableId" });
+            DropTable("dbo.Category");
             DropTable("dbo.AreaTable");
             DropTable("dbo.Table");
-            DropTable("dbo.Category");
             DropTable("dbo.Food");
             DropTable("dbo.BillInfo");
             DropTable("dbo.Bill");
