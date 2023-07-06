@@ -29,11 +29,6 @@ namespace QuanlyCafe
             LoadComboboxStatus(cbbCategoryStatus);
             LoadComboboxStatus(ccbFoodStatus);
             LoadComboboxStatus(cbbAccountStatus);
-            BindingArea();
-            BindingTable();
-            BindingCategory();
-            BindingFood();
-            BindingAccount();
             LoadCombboxArea();
             LoadComboboxFood();
         }
@@ -62,6 +57,7 @@ namespace QuanlyCafe
                 dgvAccount.Columns.Insert(6, btnDelete);
             }
             dgvAccount.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            BindingAccount();
         }
         public void LoadArea()
         {
@@ -86,6 +82,7 @@ namespace QuanlyCafe
             }
 
             dgvArea.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            BindingArea();
         }
         public void LoadTable()
         {
@@ -111,6 +108,7 @@ namespace QuanlyCafe
             }
 
             dgvTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            BindingTable();
         }
         public void LoadCategory()
         {
@@ -136,6 +134,7 @@ namespace QuanlyCafe
             }
 
             dgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            BindingCategory();
         }
         public void LoadFood()
         {
@@ -163,6 +162,7 @@ namespace QuanlyCafe
             }
 
             dgvFood.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            BindingFood();
         }
 
         #endregion
@@ -170,28 +170,46 @@ namespace QuanlyCafe
 
         private void BindingArea()
         {
+            txtAreaId.DataBindings.Clear();
+            txtAreaName.DataBindings.Clear();
+
             txtAreaId.DataBindings.Add(new Binding("Text", dgvArea.DataSource, "Id", true, DataSourceUpdateMode.Never));
             txtAreaName.DataBindings.Add(new Binding("Text", dgvArea.DataSource, "Name", true, DataSourceUpdateMode.Never));
         }
         private void BindingTable()
         {
+            txtTableId.DataBindings.Clear();
+            txtTableName.DataBindings.Clear();
+
             txtTableId.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Id", true, DataSourceUpdateMode.Never));
             txtTableName.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Name", true, DataSourceUpdateMode.Never));
         }
 
         private void BindingCategory()
         {
+            txtCategoryId.DataBindings.Clear();
+            txtCategoryName.DataBindings.Clear();
+
             txtCategoryId.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "Id", true, DataSourceUpdateMode.Never));
             txtCategoryName.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "Name", true, DataSourceUpdateMode.Never));
         }
         private void BindingFood()
         {
+            txtFoodId.DataBindings.Clear();
+            txtFoodName.DataBindings.Clear();
+            txtFoodPrice.DataBindings.Clear();
+
             txtFoodId.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "Id", true, DataSourceUpdateMode.Never));
             txtFoodName.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "Name", true, DataSourceUpdateMode.Never));
             txtFoodPrice.DataBindings.Add(new Binding("Value", dgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
         }
         private void BindingAccount()
         {
+            txtAccountId.DataBindings.Clear();
+            txtAccountUserName.DataBindings.Clear();
+            txtAccountDisplayName.DataBindings.Clear();
+            txtAccountPassword.DataBindings.Clear();
+
             txtAccountId.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Id", true, DataSourceUpdateMode.Never));
             txtAccountUserName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
             txtAccountDisplayName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "DislayName", true, DataSourceUpdateMode.Never));
@@ -503,11 +521,11 @@ namespace QuanlyCafe
         {
             LoadCombboxArea();
             LoadComboboxFood();
-            //LoadArea();
-            //LoadTable();
-            //LoadCategory();
-            //LoadFood();
-            //LoadAccount();
+            LoadArea();
+            LoadTable();
+            LoadCategory();
+            LoadFood();
+            LoadAccount();
         }
 
         private void dgvArea_CellContentClick(object sender, DataGridViewCellEventArgs e)
