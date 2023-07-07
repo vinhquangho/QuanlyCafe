@@ -31,12 +31,14 @@
             this.flpFmain = new System.Windows.Forms.FlowLayoutPanel();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpArea = new System.Windows.Forms.TabPage();
+            this.btnUpdateArea = new System.Windows.Forms.Button();
             this.txtAreaId = new System.Windows.Forms.TextBox();
             this.txtAreaName = new System.Windows.Forms.TextBox();
             this.ccbAreaStatus = new System.Windows.Forms.ComboBox();
             this.btnCreateArea = new System.Windows.Forms.Button();
             this.dgvArea = new System.Windows.Forms.DataGridView();
             this.tpTable = new System.Windows.Forms.TabPage();
+            this.btnUpdateTable = new System.Windows.Forms.Button();
             this.cbbAreaTable = new System.Windows.Forms.ComboBox();
             this.txtTableId = new System.Windows.Forms.TextBox();
             this.txtTableName = new System.Windows.Forms.TextBox();
@@ -44,12 +46,14 @@
             this.btnCreateTable = new System.Windows.Forms.Button();
             this.dgvTable = new System.Windows.Forms.DataGridView();
             this.tpCategory = new System.Windows.Forms.TabPage();
+            this.btnUpdateCategory = new System.Windows.Forms.Button();
             this.txtCategoryId = new System.Windows.Forms.TextBox();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.cbbCategoryStatus = new System.Windows.Forms.ComboBox();
             this.btnCreateCategory = new System.Windows.Forms.Button();
             this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.tpFood = new System.Windows.Forms.TabPage();
+            this.btnUpdateFood = new System.Windows.Forms.Button();
             this.txtFoodPrice = new System.Windows.Forms.NumericUpDown();
             this.cbbFoodCategory = new System.Windows.Forms.ComboBox();
             this.txtFoodId = new System.Windows.Forms.TextBox();
@@ -58,6 +62,7 @@
             this.btnCreateFood = new System.Windows.Forms.Button();
             this.dgvFood = new System.Windows.Forms.DataGridView();
             this.tbAccount = new System.Windows.Forms.TabPage();
+            this.btnUpdateAccount = new System.Windows.Forms.Button();
             this.txtAccountDisplayName = new System.Windows.Forms.TextBox();
             this.txtAccountPassword = new System.Windows.Forms.TextBox();
             this.txtAccountId = new System.Windows.Forms.TextBox();
@@ -65,11 +70,6 @@
             this.cbbAccountStatus = new System.Windows.Forms.ComboBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
-            this.btnUpdateArea = new System.Windows.Forms.Button();
-            this.btnUpdateTable = new System.Windows.Forms.Button();
-            this.btnUpdateCategory = new System.Windows.Forms.Button();
-            this.btnUpdateFood = new System.Windows.Forms.Button();
-            this.btnUpdateAccount = new System.Windows.Forms.Button();
             this.flpFmain.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.tpArea.SuspendLayout();
@@ -123,6 +123,16 @@
             this.tpArea.TabIndex = 0;
             this.tpArea.Text = "Khu vực";
             this.tpArea.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateArea
+            // 
+            this.btnUpdateArea.Location = new System.Drawing.Point(680, 8);
+            this.btnUpdateArea.Name = "btnUpdateArea";
+            this.btnUpdateArea.Size = new System.Drawing.Size(75, 21);
+            this.btnUpdateArea.TabIndex = 7;
+            this.btnUpdateArea.Text = "Sửa";
+            this.btnUpdateArea.UseVisualStyleBackColor = true;
+            this.btnUpdateArea.Click += new System.EventHandler(this.btnUpdateArea_Click);
             // 
             // txtAreaId
             // 
@@ -184,6 +194,16 @@
             this.tpTable.TabIndex = 1;
             this.tpTable.Text = "Bàn ăn";
             this.tpTable.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateTable
+            // 
+            this.btnUpdateTable.Location = new System.Drawing.Point(680, 8);
+            this.btnUpdateTable.Name = "btnUpdateTable";
+            this.btnUpdateTable.Size = new System.Drawing.Size(75, 21);
+            this.btnUpdateTable.TabIndex = 11;
+            this.btnUpdateTable.Text = "Sửa";
+            this.btnUpdateTable.UseVisualStyleBackColor = true;
+            this.btnUpdateTable.Click += new System.EventHandler(this.btnUpdateTable_Click);
             // 
             // cbbAreaTable
             // 
@@ -253,6 +273,16 @@
             this.tpCategory.Text = "Loại món ăn";
             this.tpCategory.UseVisualStyleBackColor = true;
             // 
+            // btnUpdateCategory
+            // 
+            this.btnUpdateCategory.Location = new System.Drawing.Point(680, 8);
+            this.btnUpdateCategory.Name = "btnUpdateCategory";
+            this.btnUpdateCategory.Size = new System.Drawing.Size(75, 21);
+            this.btnUpdateCategory.TabIndex = 12;
+            this.btnUpdateCategory.Text = "Sửa";
+            this.btnUpdateCategory.UseVisualStyleBackColor = true;
+            this.btnUpdateCategory.Click += new System.EventHandler(this.btnUpdateCategory_Click);
+            // 
             // txtCategoryId
             // 
             this.txtCategoryId.Enabled = false;
@@ -314,6 +344,16 @@
             this.tpFood.TabIndex = 3;
             this.tpFood.Text = "Món ăn";
             this.tpFood.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateFood
+            // 
+            this.btnUpdateFood.Location = new System.Drawing.Point(703, 6);
+            this.btnUpdateFood.Name = "btnUpdateFood";
+            this.btnUpdateFood.Size = new System.Drawing.Size(50, 24);
+            this.btnUpdateFood.TabIndex = 16;
+            this.btnUpdateFood.Text = "Sửa";
+            this.btnUpdateFood.UseVisualStyleBackColor = true;
+            this.btnUpdateFood.Click += new System.EventHandler(this.btnUpdateFood_Click);
             // 
             // txtFoodPrice
             // 
@@ -397,6 +437,16 @@
             this.tbAccount.Text = "Tài khoản";
             this.tbAccount.UseVisualStyleBackColor = true;
             // 
+            // btnUpdateAccount
+            // 
+            this.btnUpdateAccount.Location = new System.Drawing.Point(703, 6);
+            this.btnUpdateAccount.Name = "btnUpdateAccount";
+            this.btnUpdateAccount.Size = new System.Drawing.Size(50, 24);
+            this.btnUpdateAccount.TabIndex = 15;
+            this.btnUpdateAccount.Text = "Sửa";
+            this.btnUpdateAccount.UseVisualStyleBackColor = true;
+            this.btnUpdateAccount.Click += new System.EventHandler(this.btnUpdateAccount_Click);
+            // 
             // txtAccountDisplayName
             // 
             this.txtAccountDisplayName.Location = new System.Drawing.Point(500, 8);
@@ -455,56 +505,6 @@
             this.dgvAccount.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccount_CellContentClick);
             this.dgvAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvaccount_cellformatting);
             // 
-            // btnUpdateArea
-            // 
-            this.btnUpdateArea.Location = new System.Drawing.Point(680, 8);
-            this.btnUpdateArea.Name = "btnUpdateArea";
-            this.btnUpdateArea.Size = new System.Drawing.Size(75, 21);
-            this.btnUpdateArea.TabIndex = 7;
-            this.btnUpdateArea.Text = "Sửa";
-            this.btnUpdateArea.UseVisualStyleBackColor = true;
-            this.btnUpdateArea.Click += new System.EventHandler(this.btnUpdateArea_Click);
-            // 
-            // btnUpdateTable
-            // 
-            this.btnUpdateTable.Location = new System.Drawing.Point(680, 8);
-            this.btnUpdateTable.Name = "btnUpdateTable";
-            this.btnUpdateTable.Size = new System.Drawing.Size(75, 21);
-            this.btnUpdateTable.TabIndex = 11;
-            this.btnUpdateTable.Text = "Sửa";
-            this.btnUpdateTable.UseVisualStyleBackColor = true;
-            this.btnUpdateTable.Click += new System.EventHandler(this.btnUpdateTable_Click);
-            // 
-            // btnUpdateCategory
-            // 
-            this.btnUpdateCategory.Location = new System.Drawing.Point(680, 8);
-            this.btnUpdateCategory.Name = "btnUpdateCategory";
-            this.btnUpdateCategory.Size = new System.Drawing.Size(75, 21);
-            this.btnUpdateCategory.TabIndex = 12;
-            this.btnUpdateCategory.Text = "Sửa";
-            this.btnUpdateCategory.UseVisualStyleBackColor = true;
-            this.btnUpdateCategory.Click += new System.EventHandler(this.btnUpdateCategory_Click);
-            // 
-            // btnUpdateFood
-            // 
-            this.btnUpdateFood.Location = new System.Drawing.Point(703, 6);
-            this.btnUpdateFood.Name = "btnUpdateFood";
-            this.btnUpdateFood.Size = new System.Drawing.Size(50, 24);
-            this.btnUpdateFood.TabIndex = 16;
-            this.btnUpdateFood.Text = "Sửa";
-            this.btnUpdateFood.UseVisualStyleBackColor = true;
-            this.btnUpdateFood.Click += new System.EventHandler(this.btnUpdateFood_Click);
-            // 
-            // btnUpdateAccount
-            // 
-            this.btnUpdateAccount.Location = new System.Drawing.Point(703, 6);
-            this.btnUpdateAccount.Name = "btnUpdateAccount";
-            this.btnUpdateAccount.Size = new System.Drawing.Size(50, 24);
-            this.btnUpdateAccount.TabIndex = 15;
-            this.btnUpdateAccount.Text = "Sửa";
-            this.btnUpdateAccount.UseVisualStyleBackColor = true;
-            this.btnUpdateAccount.Click += new System.EventHandler(this.btnUpdateAccount_Click);
-            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,6 +513,7 @@
             this.Controls.Add(this.flpFmain);
             this.Name = "fMain";
             this.Text = "fMain";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fMain_FormClosed);
             this.flpFmain.ResumeLayout(false);
             this.tcMain.ResumeLayout(false);
             this.tpArea.ResumeLayout(false);

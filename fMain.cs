@@ -587,5 +587,11 @@ namespace QuanlyCafe
                 LoadAccount();
             }
         }
+
+        private void fMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var fmain = new fTableManager();
+            fmain.ShowDialog();
+        }
     }
 }

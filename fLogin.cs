@@ -27,7 +27,7 @@ namespace QuanlyCafe
                 return;
             }
             this.Hide();
-            var fmain = new fMain();
+            var fmain = new fTableManager();
             fmain.ShowDialog();
         }
 
