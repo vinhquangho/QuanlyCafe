@@ -26,10 +26,14 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         DateIn = c.DateTime(nullable: false),
-                        DateOut = c.DateTime(nullable: false),
+                        DateOut = c.DateTime(),
                         TableId = c.Int(nullable: false),
                         Status = c.Int(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         TotalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Discount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Service = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Note = c.String(),
                         AccountId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

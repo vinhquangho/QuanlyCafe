@@ -254,6 +254,11 @@ namespace QuanlyCafe
                 {
                     bill.Status = Status.DeActive;
                     bill.DateOut = DateTime.Now;
+                    bill.Price = decimal.Parse(txtPrice.Text, style, culture);
+                    bill.Discount = decimal.Parse(txtDiscount.Text, style, culture);
+                    bill.Service = decimal.Parse(txtService.Text, style, culture);
+                    bill.TotalPrice = decimal.Parse(txtTotal.Text, style, culture);
+                    bill.Note = txtNote.Text;
                     _dbContext.SaveChanges();
 
                     ReloadTable();

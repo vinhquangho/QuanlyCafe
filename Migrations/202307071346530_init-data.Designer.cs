@@ -7,13 +7,13 @@ namespace QuanlyCafe.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class updatetablebilldateout : IMigrationMetadata
+    public sealed partial class initdata : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatetablebilldateout));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initdata));
         
         string IMigrationMetadata.Id
         {
-            get { return "202307070724201_update-table-bill-dateout"; }
+            get { return "202307071346530_init-data"; }
         }
         
         string IMigrationMetadata.Source
