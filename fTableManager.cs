@@ -32,14 +32,14 @@ namespace QuanlyCafe
             var area = _dbContext.AreaTables.Where(f => f.Status == Status.Active).ToList();
             foreach (var a in area)
             {
-                var tabPanel = new TabPage() { Name = $@"tab-${a.Id}", Text = a.Name, Width = 780, Height = 708 };
-                var flowLayoutControl = new FlowLayoutPanel() { Name = $@"fp-${a.Id}", Height = 708, Width = 780 };
+                var tabPanel = new TabPage() { Name = $@"tab-${a.Id}", Text = a.Name, Width = 525, Height = 525 };
+                var flowLayoutControl = new FlowLayoutPanel() { Name = $@"fp-${a.Id}", Height = 525, Width = 525 };
                 tabPanel.Controls.Add(flowLayoutControl);
 
                 var table = _dbContext.Tables.Where(f => f.AreaTableId == a.Id).ToList();
                 foreach (var t in table)
                 {
-                    var btn = new Button() { Name = $"btn-${t.Id}", Text = t.Name, Width = 150, Height = 50, TextAlign = ContentAlignment.MiddleCenter, Tag = t.Id };
+                    var btn = new Button() { Name = $"btn-${t.Id}", Text = t.Name, Width = 120, Height = 50, TextAlign = ContentAlignment.MiddleCenter, Tag = t.Id };
                     btn.Click += btnTable_Click;
                     var tableExsitBill = _dbContext.Bills.Any(b => b.TableId == t.Id && b.Status == Status.Active);
                     if (tableExsitBill)
@@ -212,8 +212,12 @@ namespace QuanlyCafe
 
                 var bill = _dbContext.Bills.FirstOrDefault(f => f.Id == billInfo.BillId);
                 var listBillInfo = _dbContext.BillInfos.Where(f => f.BillId == bill.Id).ToList();
-                if (listBillInfo.Count <= 0) _dbContext.Bills.Remove(bill);
+                if (listBillInfo.Count <= 0) _dbContext.Bills.Remove(bill); 
+                var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
+                var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
                 bill.Price = listBillInfo.Sum(f => f.Price * f.Count);
+                bill.Service = service;
+                bill.Discount = discount;
                 bill.TotalPrice = bill.Price + bill.Service - bill.Discount;
                 _dbContext.SaveChanges();
 
@@ -264,6 +268,57 @@ namespace QuanlyCafe
                     ReloadTable();
                 }
             }
+        }
+
+        private void txtService_TextChanged(object sender, EventArgs e)
+        {
+            var price = decimal.Parse(txtPrice.Text, style, culture);
+            var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
+            var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
+            txtTotal.Text = (price + service - discount).ToString("c", culture);
+            txtService.Text = service.ToString("c", culture);
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            var price = decimal.Parse(txtPrice.Text, style, culture);
+            var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
+            var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
+            txtTotal.Text = (price + service - discount).ToString("c", culture);
+            txtDiscount.Text = discount.ToString("c", culture);
+        }
+
+        private void brnDelete_Click(object sender, EventArgs e)
+        {
+            if (BillInfoId.HasValue && TableId.HasValue)
+            {
+                var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.Id == BillInfoId);
+                _dbContext.BillInfos.Remove(billInfo);
+                _dbContext.SaveChanges();
+
+                var bill = _dbContext.Bills.FirstOrDefault(f => f.Id == billInfo.BillId);
+                var listBillInfo = _dbContext.BillInfos.Where(f => f.BillId == bill.Id).ToList();
+                if (listBillInfo.Count <= 0) _dbContext.Bills.Remove(bill);
+                var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
+                var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
+                bill.Price = listBillInfo.Sum(f => f.Price * f.Count);
+                bill.Service = service;
+                bill.Discount = discount;
+                bill.TotalPrice = bill.Price + bill.Service - bill.Discount;
+                _dbContext.SaveChanges();
+
+                ReloadTable();
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSwipTable_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
