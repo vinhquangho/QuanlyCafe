@@ -13,7 +13,7 @@ namespace QuanlyCafe.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202307071346530_init-data"; }
+            get { return "202307071408555_init-data"; }
         }
         
         string IMigrationMetadata.Source
