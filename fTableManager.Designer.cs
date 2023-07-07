@@ -360,7 +360,7 @@
             this.listViewFood.FullRowSelect = true;
             this.listViewFood.GridLines = true;
             this.listViewFood.HideSelection = false;
-            this.listViewFood.Location = new System.Drawing.Point(4, 321);
+            this.listViewFood.Location = new System.Drawing.Point(0, 320);
             this.listViewFood.MultiSelect = false;
             this.listViewFood.Name = "listViewFood";
             this.listViewFood.Size = new System.Drawing.Size(300, 410);
