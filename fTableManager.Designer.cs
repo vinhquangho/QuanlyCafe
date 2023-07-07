@@ -35,6 +35,8 @@
             this.pTable = new System.Windows.Forms.Panel();
             this.tArea = new System.Windows.Forms.TabControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnSwipTable = new System.Windows.Forms.Button();
             this.btnPayment = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.brnDelete = new System.Windows.Forms.Button();
@@ -57,16 +59,12 @@
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.treeViewCategory = new System.Windows.Forms.TreeView();
-            this.btnSwipTable = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewBill = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbbFood = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.pTable.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -126,8 +124,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.cbbFood);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnSwipTable);
             this.panel1.Controls.Add(this.btnPayment);
@@ -152,20 +148,41 @@
             this.panel1.Size = new System.Drawing.Size(583, 734);
             this.panel1.TabIndex = 2;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(256, 358);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 18);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Số lượng:";
+            // 
+            // btnSwipTable
+            // 
+            this.btnSwipTable.Location = new System.Drawing.Point(426, 330);
+            this.btnSwipTable.Name = "btnSwipTable";
+            this.btnSwipTable.Size = new System.Drawing.Size(150, 50);
+            this.btnSwipTable.TabIndex = 17;
+            this.btnSwipTable.Text = "Chuyển bàn";
+            this.btnSwipTable.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnSwipTable.UseVisualStyleBackColor = true;
+            // 
             // btnPayment
             // 
             this.btnPayment.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPayment.Location = new System.Drawing.Point(426, 319);
+            this.btnPayment.Location = new System.Drawing.Point(426, 274);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(150, 50);
             this.btnPayment.TabIndex = 16;
             this.btnPayment.Text = "Thanh toán";
             this.btnPayment.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnPayment.UseVisualStyleBackColor = true;
+            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(426, 263);
+            this.btnPrint.Location = new System.Drawing.Point(426, 218);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(150, 50);
             this.btnPrint.TabIndex = 15;
@@ -174,7 +191,7 @@
             // 
             // brnDelete
             // 
-            this.brnDelete.Location = new System.Drawing.Point(426, 207);
+            this.brnDelete.Location = new System.Drawing.Point(426, 162);
             this.brnDelete.Name = "brnDelete";
             this.brnDelete.Size = new System.Drawing.Size(150, 50);
             this.brnDelete.TabIndex = 14;
@@ -183,16 +200,17 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(426, 151);
+            this.btnUpdate.Location = new System.Drawing.Point(426, 106);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(150, 50);
             this.btnUpdate.TabIndex = 13;
             this.btnUpdate.Text = "Giảm";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(426, 96);
+            this.btnAdd.Location = new System.Drawing.Point(426, 51);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(150, 50);
             this.btnAdd.TabIndex = 12;
@@ -368,16 +386,6 @@
             this.treeViewCategory.TabIndex = 0;
             this.treeViewCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewCategory_AfterSelect);
             // 
-            // btnSwipTable
-            // 
-            this.btnSwipTable.Location = new System.Drawing.Point(426, 375);
-            this.btnSwipTable.Name = "btnSwipTable";
-            this.btnSwipTable.Size = new System.Drawing.Size(150, 50);
-            this.btnSwipTable.TabIndex = 17;
-            this.btnSwipTable.Text = "Chuyển bàn";
-            this.btnSwipTable.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.btnSwipTable.UseVisualStyleBackColor = true;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.listViewBill);
@@ -404,6 +412,7 @@
             this.listViewBill.TabIndex = 0;
             this.listViewBill.UseCompatibleStateImageBehavior = false;
             this.listViewBill.View = System.Windows.Forms.View.Details;
+            this.listViewBill.SelectedIndexChanged += new System.EventHandler(this.listViewBill_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -424,34 +433,6 @@
             // 
             this.columnHeader4.Text = "Thành tiền";
             this.columnHeader4.Width = 105;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(256, 358);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 18);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Số lượng:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(426, 48);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 18);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Mặt hàng:";
-            // 
-            // cbbFood
-            // 
-            this.cbbFood.FormattingEnabled = true;
-            this.cbbFood.Location = new System.Drawing.Point(426, 69);
-            this.cbbFood.Name = "cbbFood";
-            this.cbbFood.Size = new System.Drawing.Size(150, 21);
-            this.cbbFood.TabIndex = 20;
             // 
             // fTableManager
             // 
@@ -520,7 +501,5 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cbbFood;
-        private System.Windows.Forms.Label label8;
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -18,12 +19,12 @@ namespace QuanlyCafe
         private CultureInfo culture = new CultureInfo("vi-VN");
         NumberStyles style = NumberStyles.Number | NumberStyles.AllowCurrencySymbol;
         private int? TableId = null;
+        private int? BillInfoId = null;
         public fTableManager()
         {
             InitializeComponent();
             LoadTable();
             LoadCategory();
-            LoadFood();
         }
         private void LoadTable()
         {
@@ -59,13 +60,6 @@ namespace QuanlyCafe
                 var node = new TreeNode() { Text = c.Name, Name = $"c-${c.Id}", Tag = c.Id };
                 treeViewCategory.Nodes.Add(node);
             }
-        }
-        private void LoadFood()
-        {
-            var food = _dbContext.Foods.Where(f => f.Status == Status.Active).ToList();
-            cbbFood.DataSource = food;
-            cbbFood.ValueMember = "Id";
-            cbbFood.DisplayMember = "Name";
         }
         private void menuStripAdmin_Click(object sender, EventArgs e)
         {
@@ -139,6 +133,12 @@ namespace QuanlyCafe
             if (!TableId.HasValue)
             {
                 MessageBox.Show("Bạn chưa chọn bàn cần thao tác", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if(listFood.Count <= 0)
+            {
+                MessageBox.Show("Bạn chưa chọn mặt hàng", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             var bill = _dbContext.Bills.FirstOrDefault(f => f.TableId == TableId.Value && f.Status == Status.Active);
             // đã có bill ở bàn
@@ -180,27 +180,82 @@ namespace QuanlyCafe
 
                 listViewFood.Items.Clear();
                 listViewBill.Items.Clear();
-                foreach (Control t in tArea.Controls)
-                {
-                    foreach (Control p in t.Controls)
-                    {
-                        foreach (Control b in p.Controls)
-                        {
-                            b.BackColor = Color.FromArgb(255, 240, 240, 240);
-                            b.ForeColor = Color.Black;
 
-                            var tableExsitBill = _dbContext.Bills.Any(f => f.TableId == (int)b.Tag && f.Status == Status.Active);
-                            if (tableExsitBill)
-                            {
-                                b.BackColor = Color.GreenYellow;
-                            }
-                            if(TableId.HasValue && TableId.Value == (int)b.Tag)
-                            {
-                                var button = (Button)b;
-                                button.PerformClick();
-                            }
+                ReloadTable();
+            }
+        }
+
+        private void listViewBill_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var listView = (ListView)sender;
+            if (listView.SelectedItems.Count > 0)
+            {
+                foreach (ListViewItem item in listView.SelectedItems)
+                {
+                    var billInfoId = (int)item.Tag;
+                    var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.Id == billInfoId);
+                    numericeCount.Value = billInfo.Count;
+                    BillInfoId = billInfoId;
+                }
+            }
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (BillInfoId.HasValue && TableId.HasValue)
+            {
+                var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.Id == BillInfoId);
+                billInfo.Count = billInfo.Count - (int)numericeCount.Value;
+                if (billInfo.Count <= 0) _dbContext.BillInfos.Remove(billInfo);
+                _dbContext.SaveChanges();
+
+                var bill = _dbContext.Bills.FirstOrDefault(f => f.Id == billInfo.BillId);
+                var listBillInfo = _dbContext.BillInfos.Where(f => f.BillId == bill.Id).ToList();
+                if (listBillInfo.Count <= 0) _dbContext.Bills.Remove(bill);
+                bill.Price = listBillInfo.Sum(f => f.Price * f.Count);
+                bill.TotalPrice = bill.Price + bill.Service - bill.Discount;
+                _dbContext.SaveChanges();
+
+                ReloadTable();
+            }
+        }
+        private void ReloadTable()
+        {
+            foreach (Control t in tArea.Controls)
+            {
+                foreach (Control p in t.Controls)
+                {
+                    foreach (Control b in p.Controls)
+                    {
+                        b.BackColor = Color.FromArgb(255, 240, 240, 240);
+                        b.ForeColor = Color.Black;
+
+                        var tableExsitBill = _dbContext.Bills.Any(f => f.TableId == (int)b.Tag && f.Status == Status.Active);
+                        if (tableExsitBill)
+                        {
+                            b.BackColor = Color.GreenYellow;
+                        }
+                        if (TableId.HasValue && TableId.Value == (int)b.Tag)
+                        {
+                            var button = (Button)b;
+                            button.PerformClick();
                         }
                     }
+                }
+            }
+        }
+        private void btnPayment_Click(object sender, EventArgs e)
+        {
+            if (TableId.HasValue)
+            {
+                var bill = _dbContext.Bills.FirstOrDefault(f => f.TableId == TableId.Value && f.Status == Status.Active);
+                if(bill != null)
+                {
+                    bill.Status = Status.DeActive;
+                    _dbContext.SaveChanges();
+
+                    ReloadTable();
                 }
             }
         }
