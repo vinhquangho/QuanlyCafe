@@ -253,6 +253,7 @@ namespace QuanlyCafe
                 if(bill != null)
                 {
                     bill.Status = Status.DeActive;
+                    bill.DateOut = DateTime.Now;
                     _dbContext.SaveChanges();
 
                     ReloadTable();
