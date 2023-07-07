@@ -590,6 +590,7 @@ namespace QuanlyCafe
 
         private void fMain_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Hide();
             var fmain = new fTableManager();
             fmain.ShowDialog();
         }

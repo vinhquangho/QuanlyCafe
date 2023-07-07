@@ -12,12 +12,16 @@ namespace QuanlyCafe.EntityFramework
     {
         public int Id { get; set; }
         public DateTime DateIn { get; set; }
-        public DateTime DateOut { get; set; }
+        public DateTime? DateOut { get; set; }
         public int TableId { get; set; }
         public Table Table { get; set; }
         public Status Status { get; set; }
-        public decimal TotalPrice { get; set; }
-        public List<BillInfo> BillInfos { get; set; }
+        public decimal Price { get; set; } //
+        public decimal TotalPrice { get; set; } //
+        public decimal Discount { get; set; }
+        public decimal Service { get; set; }
+        public string Note { get; set; }
+        public List<BillInfo> BillInfos { get; set; } //
         public int AccountId { get; set; }
         public Account Account { get; set; }
     }

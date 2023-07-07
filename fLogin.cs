@@ -26,6 +26,8 @@ namespace QuanlyCafe
                 MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác", "Thông báo");
                 return;
             }
+            var account = _dbContext.Accounts.FirstOrDefault(f => f.UserName == txbUserName.Text && f.Password == txbPassWord.Text);
+            Global.AccountId = account.Id;
             this.Hide();
             var fmain = new fTableManager();
             fmain.ShowDialog();
