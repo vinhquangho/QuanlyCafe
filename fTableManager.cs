@@ -110,6 +110,7 @@ namespace QuanlyCafe
                 {
                     var food = _dbContext.Foods.FirstOrDefault(f => f.Id == billinfo.FoodId);
                     ListViewItem item = new ListViewItem(new string[] { food.Name, billinfo.Count.ToString(), billinfo.Price.ToString("c", culture), (billinfo.Count * billinfo.Price).ToString("c", culture) });
+                    item.Tag = billinfo.Id;
                     listViewBill.Items.Add(item);
                 }
                 txtPrice.Text = bill.Price.ToString("c", culture);
@@ -177,7 +178,6 @@ namespace QuanlyCafe
                 _dbContext.Bills.Add(billDto);
                 _dbContext.SaveChanges();
 
-                TableId = null;
                 listViewFood.Items.Clear();
                 listViewBill.Items.Clear();
                 foreach (Control t in tArea.Controls)
@@ -188,6 +188,17 @@ namespace QuanlyCafe
                         {
                             b.BackColor = Color.FromArgb(255, 240, 240, 240);
                             b.ForeColor = Color.Black;
+
+                            var tableExsitBill = _dbContext.Bills.Any(f => f.TableId == (int)b.Tag && f.Status == Status.Active);
+                            if (tableExsitBill)
+                            {
+                                b.BackColor = Color.GreenYellow;
+                            }
+                            if(TableId.HasValue && TableId.Value == (int)b.Tag)
+                            {
+                                var button = (Button)b;
+                                button.PerformClick();
+                            }
                         }
                     }
                 }
