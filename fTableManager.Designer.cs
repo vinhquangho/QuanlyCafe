@@ -52,10 +52,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pFood = new System.Windows.Forms.Panel();
+            this.treeViewCategory = new System.Windows.Forms.TreeView();
             this.listViewFood = new System.Windows.Forms.ListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treeViewCategory = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewBill = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -98,6 +98,7 @@
             this.menuStripLogout.Name = "menuStripLogout";
             this.menuStripLogout.Size = new System.Drawing.Size(73, 20);
             this.menuStripLogout.Text = "Đăng xuất";
+            this.menuStripLogout.Click += new System.EventHandler(this.menuStripLogout_Click);
             // 
             // tArea
             // 
@@ -305,6 +306,15 @@
             this.pFood.Size = new System.Drawing.Size(200, 209);
             this.pFood.TabIndex = 3;
             // 
+            // treeViewCategory
+            // 
+            this.treeViewCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewCategory.Location = new System.Drawing.Point(0, 0);
+            this.treeViewCategory.Name = "treeViewCategory";
+            this.treeViewCategory.Size = new System.Drawing.Size(200, 209);
+            this.treeViewCategory.TabIndex = 0;
+            this.treeViewCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewCategory_AfterSelect);
+            // 
             // listViewFood
             // 
             this.listViewFood.CheckBoxes = true;
@@ -331,15 +341,6 @@
             // 
             this.columPrice.Text = "Giá tiền";
             this.columPrice.Width = 100;
-            // 
-            // treeViewCategory
-            // 
-            this.treeViewCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewCategory.Location = new System.Drawing.Point(0, 0);
-            this.treeViewCategory.Name = "treeViewCategory";
-            this.treeViewCategory.Size = new System.Drawing.Size(200, 209);
-            this.treeViewCategory.TabIndex = 0;
-            this.treeViewCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewCategory_AfterSelect);
             // 
             // panel2
             // 

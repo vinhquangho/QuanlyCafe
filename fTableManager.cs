@@ -144,7 +144,31 @@ namespace QuanlyCafe
             // đã có bill ở bàn
             if (bill != null)
             {
+                foreach (var item in listFood)
+                {
+                    var foodId = (int)item.Tag;
+                    var food = _dbContext.Foods.FirstOrDefault(f => f.Id == foodId);
+                    var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.BillId == bill.Id && f.FoodId == food.Id);
+                    if(billInfo != null)
+                    {
+                        billInfo.Count = billInfo.Count + (int)numericeCount.Value;
+                        _dbContext.SaveChanges();
+                    }
+                    else
+                    {
+                        var billInfoDto = new BillInfo() { FoodId = food.Id, Price = food.Price, Count = (int)numericeCount.Value, BillId = bill.Id };
+                        _dbContext.BillInfos.Add(billInfoDto);
+                        _dbContext.SaveChanges();
+                    }
+                }
+                var listBillInfo = _dbContext.BillInfos.Where(f => f.BillId == bill.Id).ToList();
+                bill.Price = listBillInfo.Sum(f => f.Price * f.Count);
+                bill.TotalPrice = bill.Price + bill.Service - bill.Discount;
+                _dbContext.SaveChanges();
 
+                //listViewFood.Items.Clear();
+                listViewBill.Items.Clear();
+                ReloadTable();
             }
             // chưa có bill ở bàn
             if (bill == null)
@@ -178,7 +202,7 @@ namespace QuanlyCafe
                 _dbContext.Bills.Add(billDto);
                 _dbContext.SaveChanges();
 
-                listViewFood.Items.Clear();
+                //listViewFood.Items.Clear();
                 listViewBill.Items.Clear();
 
                 ReloadTable();
@@ -206,6 +230,11 @@ namespace QuanlyCafe
             if (BillInfoId.HasValue && TableId.HasValue)
             {
                 var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.Id == BillInfoId);
+                if(billInfo == null)
+                {
+                    MessageBox.Show("Bạn chưa chọn món ăn cần thao tác", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 billInfo.Count = billInfo.Count - (int)numericeCount.Value;
                 if (billInfo.Count <= 0) _dbContext.BillInfos.Remove(billInfo);
                 _dbContext.SaveChanges();
@@ -222,6 +251,7 @@ namespace QuanlyCafe
                 _dbContext.SaveChanges();
 
                 ReloadTable();
+                BillInfoId = null;
             }
         }
         private void ReloadTable()
@@ -272,20 +302,28 @@ namespace QuanlyCafe
 
         private void txtService_TextChanged(object sender, EventArgs e)
         {
-            var price = decimal.Parse(txtPrice.Text, style, culture);
-            var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
-            var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
-            txtTotal.Text = (price + service - discount).ToString("c", culture);
-            txtService.Text = service.ToString("c", culture);
+            try
+            {
+                var price = decimal.Parse(txtPrice.Text, style, culture);
+                var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
+                var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
+                txtTotal.Text = (price + service - discount).ToString("c", culture);
+                txtService.Text = service.ToString("c", culture);
+            }
+            catch(Exception ex) { }
         }
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            var price = decimal.Parse(txtPrice.Text, style, culture);
-            var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
-            var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
-            txtTotal.Text = (price + service - discount).ToString("c", culture);
-            txtDiscount.Text = discount.ToString("c", culture);
+            try
+            {
+                var price = decimal.Parse(txtPrice.Text, style, culture);
+                var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
+                var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
+                txtTotal.Text = (price + service - discount).ToString("c", culture);
+                txtDiscount.Text = discount.ToString("c", culture);
+            }
+            catch(Exception ex) { }
         }
 
         private void brnDelete_Click(object sender, EventArgs e)
@@ -308,6 +346,7 @@ namespace QuanlyCafe
                 _dbContext.SaveChanges();
 
                 ReloadTable();
+                BillInfoId = null;
             }
         }
 
@@ -319,6 +358,11 @@ namespace QuanlyCafe
         private void btnSwipTable_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuStripLogout_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
