@@ -135,7 +135,7 @@ namespace QuanlyCafe
                 MessageBox.Show("Bạn chưa chọn bàn cần thao tác", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if(listFood.Count <= 0)
+            if (listFood.Count <= 0)
             {
                 MessageBox.Show("Bạn chưa chọn mặt hàng", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -149,7 +149,7 @@ namespace QuanlyCafe
                     var foodId = (int)item.Tag;
                     var food = _dbContext.Foods.FirstOrDefault(f => f.Id == foodId);
                     var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.BillId == bill.Id && f.FoodId == food.Id);
-                    if(billInfo != null)
+                    if (billInfo != null)
                     {
                         billInfo.Count = billInfo.Count + (int)numericeCount.Value;
                         _dbContext.SaveChanges();
@@ -230,7 +230,7 @@ namespace QuanlyCafe
             if (BillInfoId.HasValue && TableId.HasValue)
             {
                 var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.Id == BillInfoId);
-                if(billInfo == null)
+                if (billInfo == null)
                 {
                     MessageBox.Show("Bạn chưa chọn món ăn cần thao tác", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -241,7 +241,7 @@ namespace QuanlyCafe
 
                 var bill = _dbContext.Bills.FirstOrDefault(f => f.Id == billInfo.BillId);
                 var listBillInfo = _dbContext.BillInfos.Where(f => f.BillId == bill.Id).ToList();
-                if (listBillInfo.Count <= 0) _dbContext.Bills.Remove(bill); 
+                if (listBillInfo.Count <= 0) _dbContext.Bills.Remove(bill);
                 var discount = decimal.Parse(string.IsNullOrEmpty(txtDiscount.Text) ? "0" : txtDiscount.Text, style, culture);
                 var service = decimal.Parse(string.IsNullOrEmpty(txtService.Text) ? "0" : txtService.Text, style, culture);
                 bill.Price = listBillInfo.Sum(f => f.Price * f.Count);
@@ -284,7 +284,7 @@ namespace QuanlyCafe
             if (TableId.HasValue)
             {
                 var bill = _dbContext.Bills.FirstOrDefault(f => f.TableId == TableId.Value && f.Status == Status.Active);
-                if(bill != null)
+                if (bill != null)
                 {
                     bill.Status = Status.DeActive;
                     bill.DateOut = DateTime.Now;
@@ -310,7 +310,7 @@ namespace QuanlyCafe
                 txtTotal.Text = (price + service - discount).ToString("c", culture);
                 txtService.Text = service.ToString("c", culture);
             }
-            catch(Exception ex) { }
+            catch (Exception ex) { }
         }
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
@@ -323,7 +323,7 @@ namespace QuanlyCafe
                 txtTotal.Text = (price + service - discount).ToString("c", culture);
                 txtDiscount.Text = discount.ToString("c", culture);
             }
-            catch(Exception ex) { }
+            catch (Exception ex) { }
         }
 
         private void brnDelete_Click(object sender, EventArgs e)
@@ -352,7 +352,8 @@ namespace QuanlyCafe
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            printPreviewDialog.Document = printDocument;
+            printPreviewDialog.ShowDialog();
         }
 
         private void btnSwipTable_Click(object sender, EventArgs e)
@@ -368,6 +369,11 @@ namespace QuanlyCafe
         private void menuStripReport_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString("aaaaaaaaaaa", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(25, 300));
         }
     }
 }
