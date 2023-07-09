@@ -373,7 +373,22 @@ namespace QuanlyCafe
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("aaaaaaaaaaa", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(25, 300));
+            if (TableId.HasValue)
+            {
+                e.Graphics.DrawString("Hóa đơn bán hàng", new Font("Arial", 14, FontStyle.Regular), Brushes.Black, new Point(130, 10));
+               
+                e.Graphics.DrawString("Ngày vào:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 50));
+                e.Graphics.DrawString("12/12/2013", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(90, 50));
+               
+                e.Graphics.DrawString("Ngày ra:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(240, 50));
+                e.Graphics.DrawString("12/12/2012", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(330, 50));
+                
+                e.Graphics.DrawString("Số bàn:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 90));
+                e.Graphics.DrawString("Khu A - bàn số 1", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(90, 90));
+                
+                e.Graphics.DrawString("Nhân viên:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(240, 90));
+                e.Graphics.DrawString("Nhân viên", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(330, 90));
+            }
         }
     }
 }
