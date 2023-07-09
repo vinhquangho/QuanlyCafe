@@ -92,6 +92,7 @@
             this.menuStripReport.Name = "menuStripReport";
             this.menuStripReport.Size = new System.Drawing.Size(61, 20);
             this.menuStripReport.Text = "Báo cáo";
+            this.menuStripReport.Click += new System.EventHandler(this.menuStripReport_Click);
             // 
             // menuStripLogout
             // 

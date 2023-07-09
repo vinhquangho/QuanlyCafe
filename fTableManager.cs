@@ -364,5 +364,10 @@ namespace QuanlyCafe
         {
             Application.Exit();
         }
+
+        private void menuStripReport_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
