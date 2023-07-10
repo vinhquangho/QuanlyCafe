@@ -358,7 +358,8 @@ namespace QuanlyCafe
 
         private void btnSwipTable_Click(object sender, EventArgs e)
         {
-
+            var fSwapTable = new fSwapTable();
+            fSwapTable.ShowDialog();
         }
 
         private void menuStripLogout_Click(object sender, EventArgs e)
