@@ -28,7 +28,9 @@ namespace QuanlyCafe
         }
         private void LoadTable()
         {
-
+            tArea.Controls.Clear();
+            listViewBill.Items.Clear();
+            _dbContext = new AppDbContext();
             var area = _dbContext.AreaTables.Where(f => f.Status == Status.Active).ToList();
             foreach (var a in area)
             {
@@ -47,6 +49,11 @@ namespace QuanlyCafe
                         btn.BackColor = Color.GreenYellow;
                     }
                     flowLayoutControl.Controls.Add(btn);
+
+                    if(TableId.HasValue && t.Id == TableId.Value)
+                    {
+                        btn.PerformClick();
+                    }
                 }
 
                 tArea.Controls.Add(tabPanel);
@@ -67,6 +74,12 @@ namespace QuanlyCafe
             var fmain = new fMain();
             fmain.ShowDialog();
         }
+
+        private void closeSwapTable(object sender, FormClosingEventArgs e)
+        {
+            LoadTable();
+        }
+
         private void btnTable_Click(object sender, EventArgs e)
         {
             foreach (Control t in tArea.Controls)
@@ -359,6 +372,7 @@ namespace QuanlyCafe
         private void btnSwipTable_Click(object sender, EventArgs e)
         {
             var fSwapTable = new fSwapTable();
+            fSwapTable.FormClosing += closeSwapTable;
             fSwapTable.ShowDialog();
         }
 

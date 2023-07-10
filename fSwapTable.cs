@@ -75,12 +75,160 @@ namespace QuanlyCafe
 
         private void btnFrom_Click(object sender, EventArgs e)
         {
+            var billTo = _dbContext.Bills.Include("BillInfos").FirstOrDefault(f => f.Status == Status.Active && f.TableId == (int)cbbTo.SelectedValue);
+            var listBillInfo = lvFrom.CheckedItems.Cast<ListViewItem>().ToList();
+            
+            if(billTo == null)
+            {
+                var billDto = new Bill()
+                {
+                    DateIn = DateTime.Now,
+                    TableId = (int)cbbTo.SelectedValue,
+                    Status = Status.Active,
+                    Discount = 0,
+                    Service = 0,
+                    Note = string.Empty,
+                    AccountId = Global.AccountId,
+                };
+                _dbContext.Bills.Add(billDto);
+                _dbContext.SaveChanges();
 
+                decimal price = 0;
+                foreach (var item in listBillInfo)
+                {
+                    var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.Id == (int)item.Tag);
+                    billInfo.BillId = billDto.Id;
+                    price += billInfo.Count * billInfo.Price;
+                    _dbContext.SaveChanges();
+                }
+                billDto.Price = price;
+                billDto.TotalPrice = price;
+                _dbContext.SaveChanges();
+
+                var billFrom = _dbContext.Bills.Include("BillInfos").FirstOrDefault(f => f.Status == Status.Active && f.TableId == (int)cbbFrom.SelectedValue);
+                if(billFrom.BillInfos.Count <= 0)
+                {
+                    _dbContext.Bills.Remove(billFrom);
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    var billInfoPrice = billFrom.BillInfos.Sum(f => f.Price * f.Count);
+                    billFrom.Price = billInfoPrice;
+                    billFrom.TotalPrice = billInfoPrice + billFrom.Service - billFrom.Discount;
+                    _dbContext.SaveChanges();
+                }
+            }
+            if(billTo != null)
+            {
+                foreach (var item in listBillInfo)
+                {
+                    var billInfoFrom = _dbContext.BillInfos.FirstOrDefault(f => f.Id == (int)item.Tag);
+                    var billInfoTo = _dbContext.BillInfos.FirstOrDefault(f => f.FoodId == billInfoFrom.FoodId && f.BillId == billTo.Id);
+                    if(billInfoTo != null)
+                    {
+                        billInfoTo.Count += billInfoFrom.Count;
+                        _dbContext.BillInfos.Remove(billInfoFrom);
+                        _dbContext.SaveChanges();
+                    }
+                    if(billInfoTo == null)
+                    {
+                        billInfoFrom.BillId = billTo.Id;
+                        _dbContext.SaveChanges();
+                    }
+                }
+                var billFrom = _dbContext.Bills.Include("BillInfos").FirstOrDefault(f => f.Status == Status.Active && f.TableId == (int)cbbFrom.SelectedValue);
+                var billInfoPrice = billFrom.BillInfos.Sum(f => f.Price * f.Count);
+                billFrom.Price = billInfoPrice;
+                billFrom.TotalPrice = billFrom.Price + billFrom.Service - billFrom.Discount;
+                _dbContext.SaveChanges();
+
+                var billInfoToPrice = billTo.BillInfos.Sum(f => f.Price * f.Count);
+                billTo.Price = billInfoToPrice;
+                billTo.TotalPrice = billTo.Price + billTo.Service - billTo.Discount;
+                _dbContext.SaveChanges();
+            }
+            cbbFrom_SelectedIndexChanged(cbbFrom, EventArgs.Empty);
+            cbbTo_SelectedIndexChanged(cbbTo, EventArgs.Empty);
         }
 
         private void btnTo_Click(object sender, EventArgs e)
         {
+            var billTo = _dbContext.Bills.Include("BillInfos").FirstOrDefault(f => f.Status == Status.Active && f.TableId == (int)cbbFrom.SelectedValue);
+            var listBillInfo = lvTo.CheckedItems.Cast<ListViewItem>().ToList();
 
+            if (billTo == null)
+            {
+                var billDto = new Bill()
+                {
+                    DateIn = DateTime.Now,
+                    TableId = (int)cbbFrom.SelectedValue,
+                    Status = Status.Active,
+                    Discount = 0,
+                    Service = 0,
+                    Note = string.Empty,
+                    AccountId = Global.AccountId,
+                };
+                _dbContext.Bills.Add(billDto);
+                _dbContext.SaveChanges();
+
+                decimal price = 0;
+                foreach (var item in listBillInfo)
+                {
+                    var billInfo = _dbContext.BillInfos.FirstOrDefault(f => f.Id == (int)item.Tag);
+                    billInfo.BillId = billDto.Id;
+                    price += billInfo.Count * billInfo.Price;
+                    _dbContext.SaveChanges();
+                }
+                billDto.Price = price;
+                billDto.TotalPrice = price;
+                _dbContext.SaveChanges();
+
+                var billFrom = _dbContext.Bills.Include("BillInfos").FirstOrDefault(f => f.Status == Status.Active && f.TableId == (int)cbbTo.SelectedValue);
+                if (billFrom.BillInfos.Count <= 0)
+                {
+                    _dbContext.Bills.Remove(billFrom);
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    var billInfoPrice = billFrom.BillInfos.Sum(f => f.Price * f.Count);
+                    billFrom.Price = billInfoPrice;
+                    billFrom.TotalPrice = billInfoPrice + billFrom.Service - billFrom.Discount;
+                    _dbContext.SaveChanges();
+                }
+            }
+            if (billTo != null)
+            {
+                foreach (var item in listBillInfo)
+                {
+                    var billInfoFrom = _dbContext.BillInfos.FirstOrDefault(f => f.Id == (int)item.Tag);
+                    var billInfoTo = _dbContext.BillInfos.FirstOrDefault(f => f.FoodId == billInfoFrom.FoodId && f.BillId == billTo.Id);
+                    if (billInfoTo != null)
+                    {
+                        billInfoTo.Count += billInfoFrom.Count;
+                        _dbContext.BillInfos.Remove(billInfoFrom);
+                        _dbContext.SaveChanges();
+                    }
+                    if (billInfoTo == null)
+                    {
+                        billInfoFrom.BillId = billTo.Id;
+                        _dbContext.SaveChanges();
+                    }
+                }
+                var billFrom = _dbContext.Bills.Include("BillInfos").FirstOrDefault(f => f.Status == Status.Active && f.TableId == (int)cbbTo.SelectedValue);
+                var billInfoPrice = billFrom.BillInfos.Sum(f => f.Price * f.Count);
+                billFrom.Price = billInfoPrice;
+                billFrom.TotalPrice = billFrom.Price + billFrom.Service - billFrom.Discount;
+                _dbContext.SaveChanges();
+
+                var billInfoToPrice = billTo.BillInfos.Sum(f => f.Price * f.Count);
+                billTo.Price = billInfoToPrice;
+                billTo.TotalPrice = billTo.Price + billTo.Service - billTo.Discount;
+                _dbContext.SaveChanges();
+            }
+            cbbFrom_SelectedIndexChanged(cbbFrom, EventArgs.Empty);
+            cbbTo_SelectedIndexChanged(cbbTo, EventArgs.Empty);
         }
     }
 }
