@@ -32,14 +32,14 @@
             this.lvFrom = new System.Windows.Forms.ListView();
             this.pnlTo = new System.Windows.Forms.Panel();
             this.lvTo = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnFrom = new System.Windows.Forms.Button();
             this.btnTo = new System.Windows.Forms.Button();
             this.cbbFrom = new System.Windows.Forms.ComboBox();
             this.cbbTo = new System.Windows.Forms.ComboBox();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlFrom.SuspendLayout();
             this.pnlTo.SuspendLayout();
             this.SuspendLayout();
@@ -56,8 +56,8 @@
             // 
             this.lvFrom.CheckBoxes = true;
             this.lvFrom.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader5,
+            this.columnHeader6});
             this.lvFrom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvFrom.GridLines = true;
             this.lvFrom.HideSelection = false;
@@ -91,6 +91,16 @@
             this.lvTo.TabIndex = 6;
             this.lvTo.UseCompatibleStateImageBehavior = false;
             this.lvTo.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Mặt hàng";
+            this.columnHeader3.Width = 165;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Số lượng";
+            this.columnHeader4.Width = 160;
             // 
             // btnFrom
             // 
@@ -130,27 +140,15 @@
             this.cbbTo.TabIndex = 5;
             this.cbbTo.SelectedIndexChanged += new System.EventHandler(this.cbbTo_SelectedIndexChanged);
             // 
-            // columnHeader1
+            // columnHeader5
             // 
-            this.columnHeader1.DisplayIndex = 1;
-            this.columnHeader1.Text = "Mặt hàng";
-            this.columnHeader1.Width = 160;
+            this.columnHeader5.Text = "Mặt hàng";
+            this.columnHeader5.Width = 160;
             // 
-            // columnHeader2
+            // columnHeader6
             // 
-            this.columnHeader2.DisplayIndex = 0;
-            this.columnHeader2.Text = "Số lượng";
-            this.columnHeader2.Width = 162;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Mặt hàng";
-            this.columnHeader3.Width = 165;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Số lượng";
-            this.columnHeader4.Width = 160;
+            this.columnHeader6.Text = "Số lượng";
+            this.columnHeader6.Width = 160;
             // 
             // fSwapTable
             // 
@@ -181,9 +179,9 @@
         private System.Windows.Forms.ComboBox cbbTo;
         private System.Windows.Forms.ListView lvFrom;
         private System.Windows.Forms.ListView lvTo;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
