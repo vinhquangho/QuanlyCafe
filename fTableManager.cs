@@ -381,14 +381,14 @@ namespace QuanlyCafe
                 e.Graphics.DrawString("Ngày vào:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, 50));
                 e.Graphics.DrawString(bill.DateIn.ToString("dd/MM/yyyy HH:mm"), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(90 + 200, 50));
 
-                e.Graphics.DrawString("Ngày ra:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 200, 50));
-                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:mm"), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(330 + 200, 50));
+                e.Graphics.DrawString("Ngày ra:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 250, 50));
+                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:mm"), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(330 + 250, 50));
 
                 e.Graphics.DrawString("Số bàn:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, 90));
                 e.Graphics.DrawString(bill.Table.Name, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(90 + 200, 90));
 
-                e.Graphics.DrawString("Nhân viên:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 200, 90));
-                e.Graphics.DrawString(bill.Account.DislayName, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(330 + 200, 90));
+                e.Graphics.DrawString("Nhân viên:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 250, 90));
+                e.Graphics.DrawString(bill.Account.DislayName, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(330 + 250, 90));
 
                 e.Graphics.DrawString("Mặt hàng", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, 140));
                 e.Graphics.DrawString("Số lượng", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(120 + 200, 140));
