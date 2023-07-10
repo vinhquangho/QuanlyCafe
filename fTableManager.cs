@@ -375,48 +375,52 @@ namespace QuanlyCafe
         {
             if (TableId.HasValue)
             {
-                e.Graphics.DrawString("Hóa đơn bán hàng", new Font("Arial", 14, FontStyle.Regular), Brushes.Black, new Point(130, 10));
+                var bill = _dbContext.Bills.Include("Table").Include("BillInfos").Include("Account").FirstOrDefault(b => b.TableId == TableId.Value && b.Status == Status.Active);
+                e.Graphics.DrawString("Hóa đơn bán hàng", new Font("Arial", 17, FontStyle.Regular), Brushes.Black, new Point(130 + 200, 10));
+
+                e.Graphics.DrawString("Ngày vào:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, 50));
+                e.Graphics.DrawString(bill.DateIn.ToString("dd/MM/yyyy HH:mm"), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(90 + 200, 50));
+
+                e.Graphics.DrawString("Ngày ra:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 200, 50));
+                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:mm"), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(330 + 200, 50));
+
+                e.Graphics.DrawString("Số bàn:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, 90));
+                e.Graphics.DrawString(bill.Table.Name, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(90 + 200, 90));
+
+                e.Graphics.DrawString("Nhân viên:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 200, 90));
+                e.Graphics.DrawString(bill.Account.DislayName, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(330 + 200, 90));
+
+                e.Graphics.DrawString("Mặt hàng", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, 140));
+                e.Graphics.DrawString("Số lượng", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(120 + 200, 140));
+                e.Graphics.DrawString("Giá tiền", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 200, 140));
+                e.Graphics.DrawString("Tổng tiền", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(360 + 200, 140));
+
+                var y = 180;
+                foreach (var billInfo in bill.BillInfos)
+                {
+                    var food = _dbContext.Foods.FirstOrDefault(f => f.Id == billInfo.FoodId);
+
+                    e.Graphics.DrawString(food.Name, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y));
+                    e.Graphics.DrawString(billInfo.Count.ToString("n", culture), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(120 + 200, y));
+                    e.Graphics.DrawString(billInfo.Price.ToString("c", culture), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(240 + 200, y));
+                    e.Graphics.DrawString((billInfo.Count * billInfo.Price).ToString("c", culture), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(360 + 200, y));
+
+                    y = y + 40;
+                }
                
-                e.Graphics.DrawString("Ngày vào:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 50));
-                e.Graphics.DrawString("12/12/2013", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(90, 50));
-               
-                e.Graphics.DrawString("Ngày ra:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(240, 50));
-                e.Graphics.DrawString("12/12/2012", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(330, 50));
-                
-                e.Graphics.DrawString("Số bàn:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 90));
-                e.Graphics.DrawString("Khu A - bàn số 1", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(90, 90));
-                
-                e.Graphics.DrawString("Nhân viên:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(240, 90));
-                e.Graphics.DrawString("Nhân viên", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(330, 90));
+                e.Graphics.DrawString("---------------------------------------------------------------------------------------", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y + 30));
 
-                e.Graphics.DrawString("Mặt hàng", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 140));
-                e.Graphics.DrawString("Số lượng", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(120, 140));
-                e.Graphics.DrawString("Giá tiền", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(240, 140));
-                e.Graphics.DrawString("Tổng tiền", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(360, 140));
+                e.Graphics.DrawString("Tiền hàng:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y + 70));
+                e.Graphics.DrawString(txtPrice.Text, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(120 + 200, y + 70));
 
-                e.Graphics.DrawString("Cafe đá", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 180));
-                e.Graphics.DrawString("1", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(120, 180));
-                e.Graphics.DrawString("1000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(240, 180));
-                e.Graphics.DrawString("1000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(360, 180));
+                e.Graphics.DrawString("Phụ thu:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y + 110));
+                e.Graphics.DrawString(txtService.Text, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(120 + 200, y + 110));
 
-                e.Graphics.DrawString("Cafe đá", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 220));
-                e.Graphics.DrawString("1", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(120, 220));
-                e.Graphics.DrawString("1000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(240, 220));
-                e.Graphics.DrawString("1000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(360, 220));
+                e.Graphics.DrawString("Giảm giá:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y + 150));
+                e.Graphics.DrawString(txtDiscount.Text, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(120 + 200, y + 150));
 
-                e.Graphics.DrawString("---------------------------------------------------------------------------------------", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 260));
-
-                e.Graphics.DrawString("Tiền hàng:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 300));
-                e.Graphics.DrawString("50000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(120, 300));
-
-                e.Graphics.DrawString("Phụ thu:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 330));
-                e.Graphics.DrawString("50000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(120, 330));
-
-                e.Graphics.DrawString("Giảm giá:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 360));
-                e.Graphics.DrawString("50000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(120, 360));
-
-                e.Graphics.DrawString("Tổng thu:", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(10, 390));
-                e.Graphics.DrawString("50000.00 đ", new Font("Arial", 11, FontStyle.Regular), Brushes.Black, new Point(120, 390));
+                e.Graphics.DrawString("Tổng thu:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y + 190));
+                e.Graphics.DrawString(txtTotal.Text, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(120 + 200, y + 190));
 
             }
         }
