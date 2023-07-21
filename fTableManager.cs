@@ -50,7 +50,7 @@ namespace QuanlyCafe
                     }
                     flowLayoutControl.Controls.Add(btn);
 
-                    if(TableId.HasValue && t.Id == TableId.Value)
+                    if (TableId.HasValue && t.Id == TableId.Value)
                     {
                         btn.PerformClick();
                     }
@@ -383,7 +383,28 @@ namespace QuanlyCafe
 
         private void menuStripReport_Click(object sender, EventArgs e)
         {
+            var freport = new fReport();
 
+            var model = _dbContext.Bills.Include("Table").Include("Account").Where(f => f.Status == Status.DeActive).ToList();
+
+            var list = model.Select(f => new Report() {
+                DateIn = f.DateIn.ToString("dd/MM/yyyy HH:ss"),
+                DateOut = f.DateOut.HasValue ? f.DateOut.Value.ToString("dd/MM/yyyy HH:ss") : DateTime.Now.ToString("dd/MM/yyyy HH:ss"),
+                TableName = f.Table.Name,
+                Status = "Đã thanh toán",
+                Price = f.Price.ToString("c", culture),
+                TotalPrice = f.TotalPrice.ToString("c", culture),
+                Discount = f.Discount.ToString("c", culture),
+                Service = f.Service.ToString("c", culture),
+                Note = f.Note,
+                AccountName = f.Account.DislayName
+            }).ToList();
+
+            CrystalReport report = new CrystalReport();
+            report.SetDataSource(list);
+
+            freport.crystalReportViewer.ReportSource = report;
+            freport.ShowDialog();
         }
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -422,7 +443,7 @@ namespace QuanlyCafe
 
                     y = y + 40;
                 }
-               
+
                 e.Graphics.DrawString("---------------------------------------------------------------------------------------", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y + 30));
 
                 e.Graphics.DrawString("Tiền hàng:", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10 + 200, y + 70));
