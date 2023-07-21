@@ -63,6 +63,7 @@
     <Compile Include="EntityFramework\Category.cs" />
     <Compile Include="EntityFramework\Food.cs" />
     <Compile Include="EntityFramework\Global.cs" />
+    <Compile Include="EntityFramework\Report.cs" />
     <Compile Include="EntityFramework\Select.cs" />
     <Compile Include="EntityFramework\Table.cs" />
     <Compile Include="fLogin.cs">
